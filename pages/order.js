@@ -45,9 +45,8 @@ const OrderPage = ({}) => {
 
   function renderPage() {
     if (displayFood.length > 0) {
-      console.log(displayFood)
     }
-    return <h1>Order Page Will Be Here</h1>
+    return displayFood.map((item) => <OrderMenuArticle key={item.id}>{item.name}</OrderMenuArticle>)
   }
 
   return (
@@ -57,5 +56,12 @@ const OrderPage = ({}) => {
     </React.Fragment>
   )
 }
+
+const OrderMenuArticle = styled.article`
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  border: 1px solid black;
+`
 
 export default OrderPage
