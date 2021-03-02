@@ -18,7 +18,7 @@ const Menu = ({}) => {
   const [displayFood, setDisplayFood] = useState([])
 
   //function for getting the food data
-  const fetchFoodData = async () => {
+  const fetchMenuData = async () => {
     const result = await getMenuData()
     //console.log('this result', result)
     setMenuData(result)
@@ -28,7 +28,7 @@ const Menu = ({}) => {
   useEffect(() => {
     //if (menuData.length === 0 || menuData === undefined) {
     //getMenuData()
-    fetchFoodData()
+    fetchMenuData()
     //} else {
     //return
   }, [])
@@ -37,7 +37,7 @@ const Menu = ({}) => {
   useEffect(() => {
     if (menuData === undefined) {
       //console.log('nothing here')
-      fetchFoodData()
+      fetchMenuData()
     } else {
       setBurgers([...menuData.filter((item) => item.type === 'burger')])
       setDrinks([...menuData.filter((item) => item.type === 'drink')])
@@ -126,8 +126,8 @@ const Menu = ({}) => {
 
   return (
     <React.Fragment>
+      <PageMenu />
       <Wrapper>
-        <PageMenu />
         <MenuNav>
           <ul>
             <li onClick={(e) => filterHandler(e)}>burgers</li>
