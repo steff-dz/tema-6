@@ -7,7 +7,7 @@ const PageMenu = () => {
     <HeaderBase>
       <Link href="/">
         <div>
-          <img src="https://img2.pngio.com/alphabet-b-letter-letters-red-icon-alphabet-b-png-512_512.png" />
+          <h1>B.</h1>
         </div>
       </Link>
     </HeaderBase>
@@ -15,17 +15,17 @@ const PageMenu = () => {
 }
 
 const HeaderBase = styled.header`
-  border: 1px solid black;
-  padding-top: 0.3rem;
-  height: 6rem;
+  height: fit-content;
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  padding-right: 5%;
+
   div {
-    width: fit-content;
-    height: fit-content;
-    img {
-      height: 5.5rem;
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 5.5rem;
+      color: #ffba6a;
     }
   }
 `

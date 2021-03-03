@@ -87,14 +87,16 @@ const Menu = ({}) => {
   //Actual page render below:
   function renderPage() {
     return displayFood.map((item) => (
-      <FoodArticle key={item.id}>
-        <img className={item.type} src={item.pic} />
-        <div className="title-container">{item.name}</div>
-        <ClickCard activeStyle={{ opacity: '1' }}>
-          <h2>{item.toppings === undefined ? '' : 'Toppings'}</h2>
-          <ul>{renderToppings(item.toppings)}</ul>
-        </ClickCard>
-      </FoodArticle>
+      <React.Fragment>
+        <FoodArticle key={item.id}>
+          <img className={item.type} src={item.pic} />
+          <div className="title-container">{item.name}</div>
+          <ClickCard activeStyle={{ opacity: '1' }}>
+            <h2>{item.toppings === undefined ? '' : 'Toppings'}</h2>
+            <ul>{renderToppings(item.toppings)}</ul>
+          </ClickCard>
+        </FoodArticle>
+      </React.Fragment>
     ))
   }
 
@@ -145,6 +147,7 @@ const Menu = ({}) => {
 const MenuNav = styled.nav`
   width: 80vw;
   padding-top: 1rem;
+  padding-bottom: 1rem;
   height: fit-content;
 
   ul {
@@ -154,13 +157,13 @@ const MenuNav = styled.nav`
     gap: 0.5rem;
     list-style: none;
     font-size: 2.5rem;
-    color: #00214d;
+    color: #ffba6a;
     li {
       cursor: pointer;
       padding: 0.5rem;
       border-radius: 5px;
       &:hover {
-        background-color: #fde24f;
+        background-color: black;
       }
     }
   }
@@ -175,7 +178,7 @@ const MainBase = styled.main`
 `
 
 const FoodArticle = styled.article`
-  border: 2px solid #00214d;
+  /* border: 2px solid #333; */
   width: 100%;
   height: 40vh;
   background-color: white;
@@ -199,13 +202,14 @@ const FoodArticle = styled.article`
     justify-content: center;
     align-items: center;
     font-size: 3rem;
-    color: #00214d;
-    background-color: #00ebc7;
+    color: black;
+    font-weight: 600;
+    background-color: #078080;
   }
 `
 
 const ClickCard = styled.div`
-  background-color: #ff5470;
+  background-color: #078080;
   border-radius: 5px;
   width: 100%;
   height: 100%;
