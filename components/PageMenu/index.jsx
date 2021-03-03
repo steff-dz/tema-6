@@ -6,27 +6,30 @@ const PageMenu = () => {
   return (
     <HeaderBase>
       <Link href="/">
-        <div>
-          <h1>B.</h1>
-        </div>
+        <h1>B.</h1>
       </Link>
     </HeaderBase>
   )
 }
 
 const HeaderBase = styled.header`
-  height: fit-content;
   width: 100%;
+  height: 15vh;
   display: flex;
   justify-content: flex-end;
-  padding-right: 5%;
+  padding-right: 1rem;
 
-  div {
-    h1 {
-      font-family: 'Pacifico', cursive;
-      font-size: 5.5rem;
-      color: #ffba6a;
-    }
+  overflow: hidden;
+
+  h1 {
+    font-family: 'Pacifico', cursive;
+    color: #ffba6a;
+    font-size: 5.5rem;
+    /* position: absolute;
+    top: -5%; */
+    /* display: inline; */
+
+    height: fit-content;
   }
 `
 export default PageMenu

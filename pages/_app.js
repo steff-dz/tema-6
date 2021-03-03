@@ -35,11 +35,7 @@ function MyApp({ Component, pageProps }) {
   //     }
   //   }
 
-  return (
-    <React.Fragment>
-      <Component {...pageProps} />
-    </React.Fragment>
-  )
+  return <Component {...pageProps} />
 }
 
 export default MyApp

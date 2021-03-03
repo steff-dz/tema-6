@@ -1,3 +1,5 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-export const Wrapper = styled.div`margin: 0 3rem;`;
+export const Wrapper = styled.div`
+  margin: 0 2rem;
+`

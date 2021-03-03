@@ -52,27 +52,6 @@ const Menu = ({}) => {
     }
   }, [burgers])
 
-  //Function to get the menudata from firebase
-  // async function getMenuData() {
-  //   let menuArray = []
-  //   if (menuArray.length === 0) {
-  //     try {
-  //       const foodCollection = await firebaseInstance.firestore().collection('food')
-  //       const foodData = await foodCollection.get()
-
-  //       foodData.forEach((el) => {
-  //         menuArray.push({
-  //           id: el.id,
-  //           ...el.data(),
-  //         })
-  //       })
-  //       setMenuData(menuArray)
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  // }
-
   //Page skeleton below
   function renderSkeleton() {
     return (
@@ -87,16 +66,16 @@ const Menu = ({}) => {
   //Actual page render below:
   function renderPage() {
     return displayFood.map((item) => (
-      <React.Fragment>
-        <FoodArticle key={item.id}>
+      <FoodArticle key={item.id}>
+        <InfoContainer>
           <img className={item.type} src={item.pic} />
           <div className="title-container">{item.name}</div>
-          <ClickCard activeStyle={{ opacity: '1' }}>
-            <h2>{item.toppings === undefined ? '' : 'Toppings'}</h2>
-            <ul>{renderToppings(item.toppings)}</ul>
-          </ClickCard>
-        </FoodArticle>
-      </React.Fragment>
+        </InfoContainer>
+
+        <CheckoutBtn key={item.name} className="checkout-btn">
+          Check Out
+        </CheckoutBtn>
+      </FoodArticle>
     ))
   }
 
@@ -127,7 +106,7 @@ const Menu = ({}) => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <PageMenu />
       <Wrapper>
         <MenuNav>
@@ -140,27 +119,29 @@ const Menu = ({}) => {
         </MenuNav>
         <MainBase>{displayFood.length === 0 ? renderSkeleton() : renderPage()}</MainBase>
       </Wrapper>
-    </React.Fragment>
+    </>
   )
 }
 
 const MenuNav = styled.nav`
-  width: 80vw;
+  /* width: 80vw; */
   padding-top: 1rem;
   padding-bottom: 1rem;
   height: fit-content;
 
   ul {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
+    padding: 0;
     list-style: none;
     font-size: 2.5rem;
     color: #ffba6a;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
     li {
+      width: fit-content;
+      padding: 0.3rem;
       cursor: pointer;
-      padding: 0.5rem;
       border-radius: 5px;
       &:hover {
         background-color: black;
@@ -170,65 +151,56 @@ const MenuNav = styled.nav`
 `
 
 const MainBase = styled.main`
+  /* border: 1px solid green; */
   min-height: 100vh;
+  /* width: 100vw; */
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding-bottom: 2rem;
-  gap: 1rem;
+  gap: 2rem;
 `
 
 const FoodArticle = styled.article`
-  /* border: 2px solid #333; */
-  width: 100%;
-  height: 40vh;
-  background-color: white;
+  /* border: 1px solid blue; */
+  width: fit-content;
+  height: fit-content;
   display: flex;
-  border-radius: 10px;
   flex-direction: column;
-  position: relative;
-  overflow: hidden;
-  .side,
+`
+
+const InfoContainer = styled.div`
+  /* border: 1px solid pink; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   .drink {
-    width: 50%;
-    align-self: center;
+    height: 200px;
+    width: auto;
   }
+
   img {
-    width: 100%;
-    height: 70%;
+    width: 350px;
+    margin: 0 auto;
   }
+
   .title-container {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3rem;
+    font-size: 3.5rem;
     color: black;
-    font-weight: 600;
+    width: 100%;
+    padding: 0 1rem;
+    text-align: center;
     background-color: #078080;
   }
 `
-
-const ClickCard = styled.div`
-  background-color: #078080;
-  border-radius: 5px;
+const CheckoutBtn = styled.button`
   width: 100%;
-  height: 100%;
-  opacity: 1;
-  position: absolute;
-  flex-direction: column;
-  align-items: flex-start;
   font-size: 2rem;
-  padding-left: 1rem;
-  padding-top: 0.5rem;
-  opacity: 0;
-  &:hover {
-    opacity: 1;
-  }
-  /* .show-card {
-		display: flex;
-	} */
-  ul {
-    padding-left: 1.5rem;
-  }
 `
 export default Menu
+
+// <ClickCard activeStyle={{ opacity: '1' }}>
+// <h2>{item.toppings === undefined ? '' : 'Toppings'}</h2>
+// <ul>{renderToppings(item.toppings)}</ul>
+// </ClickCard>
