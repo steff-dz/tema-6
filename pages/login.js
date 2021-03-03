@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import PageMenu from '../components/PageMenu'
 import { Wrapper } from '../components/Wrapper'
 import InputBlock from '../components/InputBlock'
+import Link from 'next/link'
 
 const Login = () => {
   return (
@@ -27,7 +28,9 @@ const Login = () => {
           />
           <button>Submit</button>
           <PageTitle as="h3">Not signed up?</PageTitle>
-          <button>Register</button>
+          <Link href="/signup">
+            <button>Register</button>
+          </Link>
         </FormBase>
       </Wrapper>
     </>
