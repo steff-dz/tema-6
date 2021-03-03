@@ -163,7 +163,7 @@ const MainBase = styled.main`
 
 const FoodArticle = styled.article`
   /* border: 1px solid blue; */
-  width: fit-content;
+  width: 100%;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -181,7 +181,7 @@ const InfoContainer = styled.div`
   }
 
   img {
-    width: 350px;
+    width: 100%;
     margin: 0 auto;
   }
 

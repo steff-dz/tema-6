@@ -17,7 +17,7 @@ const SiteMenu = () => {
             MENU
           </motion.div>
         </Link>
-        <Link href="/order">
+        <Link href="/login">
           <motion.div
             style={{ backgroundColor: '#A46877' }}
             initial={{ opacity: 0, y: -100, rotateZ: 50 }}
