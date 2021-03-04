@@ -1,3 +1,4 @@
+import "firebase/auth"
 import firebase from 'firebase'
 
 const firebaseConfig = {
@@ -10,6 +11,8 @@ const firebaseConfig = {
 }
 try {
   firebase.initializeApp(firebaseConfig)
+  //firebase auth
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistance.SESSION)
 } catch (error) {
   if (!/already exists/.test(error.message)) {
     console.error('firebase error')

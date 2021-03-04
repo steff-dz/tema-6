@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import firebaseInstance from '../config/firebase'
 import styled from 'styled-components'
 import PageMenu from '../components/PageMenu'
 import { Wrapper } from '../components/Wrapper'
@@ -23,9 +24,16 @@ const SignUp = () => {
     setUserPassword(e.target.value)
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
-    console.log(userName, userEmail, userPassword)
+
+    try {
+      await firebaseInstance.auth().createUserWithEmailAndPassword(userEmail, userPassword)
+      console.log('you made a new user!', userEmail, userPassword)
+    } catch (e) {
+      console.log('you failed!', e)
+    }
+
     setUserName('')
     setUserEmail('')
     setUserPassword('')
