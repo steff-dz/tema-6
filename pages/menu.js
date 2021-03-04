@@ -6,9 +6,11 @@ import MenuSkeleton from '../components/MenuSkeleton'
 import getMenuData from '../components/GetMenu'
 import PageMenu from '../components/PageMenu'
 import { Wrapper } from '../components/Wrapper'
+import { AuthContext } from '../utils/auth'
 
 const Menu = ({}) => {
   //initial state
+
   const [menuData, setMenuData] = useState([])
 
   //states for the food data coming from firestore
@@ -28,6 +30,7 @@ const Menu = ({}) => {
   useEffect(() => {
     //if (menuData.length === 0 || menuData === undefined) {
     //getMenuData()
+    console.log(AuthContext.user)
     fetchMenuData()
     //} else {
     //return

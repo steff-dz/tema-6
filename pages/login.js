@@ -6,7 +6,7 @@ import { PageTitle } from '../components/PageTitle'
 import { FormBase } from '../components/FormBase'
 import InputBlock from '../components/InputBlock'
 import Link from 'next/link'
-import { getLocationOrigin } from 'next/dist/next-server/lib/utils'
+import firebaseInstance from '../config/firebase'
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState('')
@@ -20,9 +20,16 @@ const Login = () => {
     setLoginPassword(e.target.value)
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
-    console.log(userName, userEmail, userPassword)
+    console.log(loginEmail, loginPassword)
+    try {
+      await firebaseInstance.auth().signInWithEmailAndPassword(loginEmail, loginPassword)
+      console.log('you are signed in!')
+    } catch (error) {
+      console.log(error, 'you failed sucka!')
+    }
+
     setLoginEmail('')
     setLoginPassword('')
   }
