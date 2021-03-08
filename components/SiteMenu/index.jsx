@@ -1,21 +1,66 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import firebaseInstance from '../../config/firebase'
+import { LoginContext } from '../../utils/status'
+import { useAuth } from '../../utils/auth'
 
 const SiteMenu = () => {
+  const { loggedIn, setLoggedIn } = useContext(LoginContext)
+  //const {user, setUser} = useAuth()
+  //const { ...values } = useAuth()
+  const user = useAuth()
+  //console.log(user)
+
+  useEffect(() => {
+    console.log(user)
+  })
+
+  // useEffect(() => {
+  //   if (values === undefined) {
+  //     console.log('not logged in')
+  //   } else {
+  //     console.log(values.email)
+  //   }
+  // })
+
+  // useEffect(() => {
+  //   const user = firebaseInstance.auth().currentUser
+  //   console.log(user, 'from get current user method')
+  //   authStateListener()
+  // })
+
+  // this is using auth and firebase to check if someone is here
+  // Could just make this an importable component to check whether a user is signed in or not?
+  // function authStateListener() {
+  //   firebaseInstance.auth().onAuthStateChanged((user) => {
+  //     if (user) {
+  //       console.log(user, 'from auth state listener on index')
+  //     } else {
+  //       console.log('no user here from auth state listener')
+  //     }
+  //   })
+  // }
+
   function handleSignOut() {
+    // if (loggedIn === false) {
+    //   console.log('you are not logged in! ')
+    //   return
+    // } else {
     firebaseInstance
       .auth()
       .signOut()
       .then(() => {
+        setLoggedIn(false)
+
         console.log('you signed out')
       })
       .catch((error) => {
         console.log(error)
       })
   }
+  //}
 
   return (
     <MainBase>

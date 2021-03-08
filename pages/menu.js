@@ -41,7 +41,7 @@ const Menu = ({}) => {
     if (menuData.length === 0 || menuData === undefined) {
       fetchMenuData()
     } else {
-      console.log('stuff from useEffect')
+      //console.log('stuff from useEffect')
       return
     }
   })

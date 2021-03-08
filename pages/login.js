@@ -34,7 +34,11 @@ const Login = () => {
     console.log(loginEmail, loginPassword)
     try {
       await firebaseInstance.auth().signInWithEmailAndPassword(loginEmail, loginPassword)
+
       console.log('you are signed in!')
+
+      //useAuth({})
+
       setLoggedIn(true)
     } catch (error) {
       console.log(error, 'you failed sucka!')

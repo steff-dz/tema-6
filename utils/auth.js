@@ -21,16 +21,17 @@ export function AuthProvider({ children }) {
         const token = user.getIdToken()
         //console.log(user, token)
         setUser(user)
-        console.log('toot toot form auth.js', user.email)
+        console.log('from auth.js', user.email)
         nookies.set(undefined, 'token', token, { path: '/' })
       }
     })
   })
 
+  //I dont think this is actually working....
   useEffect(() => {
     const handle = setInterval(async () => {
-      console.log('refresher going')
-      const user = firebase.auth().currentUser
+      const user = firebaseInstance.auth().currentUser
+      console.log(user, 'testtest')
       if (user) await user.getIdToken(true)
     }, 10 * 60 * 1000)
 
