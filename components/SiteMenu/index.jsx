@@ -2,8 +2,21 @@ import React from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import firebaseInstance from '../../config/firebase'
 
 const SiteMenu = () => {
+  function handleSignOut() {
+    firebaseInstance
+      .auth()
+      .signOut()
+      .then(() => {
+        console.log('you signed out')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
   return (
     <MainBase>
       <SiteNav>
@@ -27,6 +40,16 @@ const SiteMenu = () => {
             LOGIN
           </motion.div>
         </Link>
+
+        <motion.div
+          style={{ backgroundColor: '#A46877' }}
+          initial={{ opacity: 0, y: -100, rotateZ: 50 }}
+          animate={{ opacity: 1, y: 0, rotateZ: 0 }}
+          transition={{ delay: 1, duration: 1, type: 'spring', stiffness: 130 }}
+          onClick={() => handleSignOut()}
+        >
+          LOGOUT
+        </motion.div>
 
         <Link href="/login">
           <motion.div

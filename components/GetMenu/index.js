@@ -1,6 +1,5 @@
-//import React, { useState, useEffect } from 'react'
+//import React from 'react'
 import firebaseInstance from '../../config/firebase'
-
 async function getMenuData() {
   let menuArray = []
 

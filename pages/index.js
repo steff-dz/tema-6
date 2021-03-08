@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
-import SiteMenu from '../components/SiteMenu';
+import React from 'react'
+import SiteMenu from '../components/SiteMenu'
+import { useAuth } from '../utils/auth'
 
 export default function Home() {
-	return (
-		<React.Fragment>
-			<SiteMenu />
-		</React.Fragment>
-	);
+  //console.log(props.value)
+  //Home.contextType = AuthProvider
+  //console.log(value)
+  //const thisUser = value.user
+  //console.log(thisUser)
+  return (
+    <React.Fragment>
+      <SiteMenu />
+    </React.Fragment>
+  )
 }

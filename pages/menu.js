@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { LoginContext } from '../utils/status'
 //import firebaseInstance from '../config/firebase'
 //import Link from 'next/link'
 import styled from 'styled-components'
-import MenuSkeleton from '../components/MenuSkeleton'
 import getMenuData from '../components/GetMenu'
+import MenuSkeleton from '../components/MenuSkeleton'
 import PageMenu from '../components/PageMenu'
 import { Wrapper } from '../components/Wrapper'
-import { AuthContext } from '../utils/auth'
+//import { AuthContext } from '../utils/auth'
 
 const Menu = ({}) => {
+  const { loggedIn, setLoggedIn } = useContext(LoginContext)
   //initial state
 
   const [menuData, setMenuData] = useState([])
@@ -22,19 +24,35 @@ const Menu = ({}) => {
   //function for getting the food data
   const fetchMenuData = async () => {
     const result = await getMenuData()
-    //console.log('this result', result)
     setMenuData(result)
   }
 
   //Retrieving menu data if the state is empty
+  // useEffect(() => {
+  // if (menuData.length === 0 || menuData === undefined) {
+  // getMenuData()
+  // console.log(AuthContext.user)
+  // fetchMenuData()
+  // } else {
+  // return
+  // }, [])
+
   useEffect(() => {
-    //if (menuData.length === 0 || menuData === undefined) {
-    //getMenuData()
-    console.log(AuthContext.user)
-    fetchMenuData()
-    //} else {
-    //return
-  }, [])
+    if (menuData.length === 0 || menuData === undefined) {
+      fetchMenuData()
+    } else {
+      console.log('stuff from useEffect')
+      return
+    }
+  })
+
+  // useEffect(() => {
+  //   if (menuData.length === 0 || menuData === undefined) {
+  //     getMenuData()
+  //   } else {
+  //     console.log('something went wrong')
+  //   }
+  // })
 
   //Filtering and sorting out the different food types into different states for organization.
   useEffect(() => {
@@ -111,6 +129,7 @@ const Menu = ({}) => {
   return (
     <>
       <PageMenu />
+      {loggedIn ? <h4>You are logged in!</h4> : <h4>You are NOT logged in!</h4>}
       <Wrapper>
         <MenuNav>
           <ul>

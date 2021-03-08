@@ -1,5 +1,5 @@
-import "firebase/auth"
 import firebase from 'firebase'
+import 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -9,15 +9,19 @@ const firebaseConfig = {
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 }
+
 try {
   firebase.initializeApp(firebaseConfig)
   //firebase auth
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistance.SESSION)
+  //Or is it firebaseConfig.auth.Auth.Persistence.SESSION??
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
 } catch (error) {
-  if (!/already exists/.test(error.message)) {
-    console.error('firebase error')
-  }
+  // if (!/already exists/.test(error.message)) {
+  //   console.error('firebase error')
+  // }
+  console.log
 }
 
 const firebaseInstance = firebase
+//firebase.auth().setPersistence(firebaseInstance.auth.Auth.Persistance.SESSION)
 export default firebaseInstance

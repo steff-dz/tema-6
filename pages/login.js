@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { LoginContext } from '../utils/status'
 import styled from 'styled-components'
 import PageMenu from '../components/PageMenu'
 import { Wrapper } from '../components/Wrapper'
@@ -8,9 +9,17 @@ import InputBlock from '../components/InputBlock'
 import Link from 'next/link'
 import firebaseInstance from '../config/firebase'
 
+import { useAuth } from '../utils/auth'
+
 const Login = () => {
+  const { loggedIn, setLoggedIn } = useContext(LoginContext)
+
+  //const { user, setUser } = useAuth()
+
   const [loginEmail, setLoginEmail] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
+
+  //needs to be the same as when you defined the state for the Context
 
   function handleEmailChange(e) {
     setLoginEmail(e.target.value)
@@ -26,6 +35,7 @@ const Login = () => {
     try {
       await firebaseInstance.auth().signInWithEmailAndPassword(loginEmail, loginPassword)
       console.log('you are signed in!')
+      setLoggedIn(true)
     } catch (error) {
       console.log(error, 'you failed sucka!')
     }
@@ -59,6 +69,7 @@ const Login = () => {
             inputChangeHandler={(e) => handlePasswordChange(e)}
           />
           <button>Submit</button>
+          {loggedIn ? <h4>You are logged in!</h4> : <h4>You are NOT logged in!</h4>}
           <PageTitle as="h3">Not signed up?</PageTitle>
           <Link href="/signup">
             <button>Register</button>
@@ -69,24 +80,7 @@ const Login = () => {
   )
 }
 
-// const PageTitle = styled.h2`
-//   color: white;
-//   font-size: 3rem;
-// `
-
-// const FormBase = styled.form`
-//   display: flex;
-//   flex-direction: column;
-//   gap: 0.5rem;
-//   color: white;
-
-//   label {
-//     font-size: 2rem;
-//   }
-
-//   input {
-//     padding: 0.5rem;
-//   }
-// `
+//<button onClick={() => setLoggedIn(true)}
 
 export default Login
+//  {loggedIn ? <h4>You are logged in!</h4> : <h4>You are NOT logged in!</h4>}
