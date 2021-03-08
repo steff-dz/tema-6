@@ -9,8 +9,6 @@ import InputBlock from '../components/InputBlock'
 import Link from 'next/link'
 import firebaseInstance from '../config/firebase'
 
-import { useAuth } from '../utils/auth'
-
 const Login = () => {
   const { loggedIn, setLoggedIn } = useContext(LoginContext)
 

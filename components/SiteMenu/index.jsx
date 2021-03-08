@@ -17,32 +17,6 @@ const SiteMenu = () => {
     console.log(user)
   })
 
-  // useEffect(() => {
-  //   if (values === undefined) {
-  //     console.log('not logged in')
-  //   } else {
-  //     console.log(values.email)
-  //   }
-  // })
-
-  // useEffect(() => {
-  //   const user = firebaseInstance.auth().currentUser
-  //   console.log(user, 'from get current user method')
-  //   authStateListener()
-  // })
-
-  // this is using auth and firebase to check if someone is here
-  // Could just make this an importable component to check whether a user is signed in or not?
-  // function authStateListener() {
-  //   firebaseInstance.auth().onAuthStateChanged((user) => {
-  //     if (user) {
-  //       console.log(user, 'from auth state listener on index')
-  //     } else {
-  //       console.log('no user here from auth state listener')
-  //     }
-  //   })
-  // }
-
   function handleSignOut() {
     // if (loggedIn === false) {
     //   console.log('you are not logged in! ')
@@ -81,6 +55,7 @@ const SiteMenu = () => {
             initial={{ opacity: 0, y: -100, rotateZ: 50 }}
             animate={{ opacity: 1, y: 0, rotateZ: 0 }}
             transition={{ delay: 1, duration: 1, type: 'spring', stiffness: 130 }}
+            className={user ? 'toggle-button' : ''}
           >
             LOGIN
           </motion.div>
@@ -92,8 +67,9 @@ const SiteMenu = () => {
           animate={{ opacity: 1, y: 0, rotateZ: 0 }}
           transition={{ delay: 1, duration: 1, type: 'spring', stiffness: 130 }}
           onClick={() => handleSignOut()}
+          className={user ? '' : 'toggle-button'}
         >
-          LOGOUT
+          LOG OUT
         </motion.div>
 
         <Link href="/login">
@@ -127,6 +103,10 @@ const SiteNav = styled.nav`
   gap: 3rem;
   justify-content: center;
   color: #232323;
+
+  .toggle-button {
+    display: none;
+  }
   div {
     display: flex;
     justify-content: center;
@@ -138,3 +118,29 @@ const SiteNav = styled.nav`
 `
 
 export default SiteMenu
+
+// useEffect(() => {
+//   if (values === undefined) {
+//     console.log('not logged in')
+//   } else {
+//     console.log(values.email)
+//   }
+// })
+
+// useEffect(() => {
+//   const user = firebaseInstance.auth().currentUser
+//   console.log(user, 'from get current user method')
+//   authStateListener()
+// })
+
+// this is using auth and firebase to check if someone is here
+// Could just make this an importable component to check whether a user is signed in or not?
+// function authStateListener() {
+//   firebaseInstance.auth().onAuthStateChanged((user) => {
+//     if (user) {
+//       console.log(user, 'from auth state listener on index')
+//     } else {
+//       console.log('no user here from auth state listener')
+//     }
+//   })
+// }
