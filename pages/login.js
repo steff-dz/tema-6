@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { LoginContext } from '../utils/status'
+//import { LoginContext } from '../utils/status'
 import styled from 'styled-components'
 import PageMenu from '../components/PageMenu'
 import { Wrapper } from '../components/Wrapper'
@@ -10,7 +10,7 @@ import Link from 'next/link'
 import firebaseInstance from '../config/firebase'
 
 const Login = () => {
-  const { loggedIn, setLoggedIn } = useContext(LoginContext)
+  //const { loggedIn, setLoggedIn } = useContext(LoginContext)
 
   //const { user, setUser } = useAuth()
 
@@ -34,10 +34,8 @@ const Login = () => {
       await firebaseInstance.auth().signInWithEmailAndPassword(loginEmail, loginPassword)
 
       console.log('you are signed in!')
-
-      //useAuth({})
-
-      setLoggedIn(true)
+      //Put a re-route back to home page or menu here!
+      //setLoggedIn(true)
     } catch (error) {
       console.log(error, 'you failed sucka!')
     }
@@ -71,7 +69,7 @@ const Login = () => {
             inputChangeHandler={(e) => handlePasswordChange(e)}
           />
           <button>Submit</button>
-          {loggedIn ? <h4>You are logged in!</h4> : <h4>You are NOT logged in!</h4>}
+
           <PageTitle as="h3">Not signed up?</PageTitle>
           <Link href="/signup">
             <button>Register</button>
@@ -86,3 +84,4 @@ const Login = () => {
 
 export default Login
 //  {loggedIn ? <h4>You are logged in!</h4> : <h4>You are NOT logged in!</h4>}
+//{loggedIn ? <h4>You are logged in!</h4> : <h4>You are NOT logged in!</h4>}

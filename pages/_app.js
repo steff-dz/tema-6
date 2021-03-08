@@ -10,11 +10,9 @@ function MyApp({ Component, pageProps }) {
   const [loggedIn, setLoggedIn] = useState(false)
 
   return (
-    <LoginContext.Provider value={{ loggedIn, setLoggedIn }}>
-      <AuthProvider>
-        <Component {...pageProps} />
-      </AuthProvider>
-    </LoginContext.Provider>
+    <AuthProvider>
+      <Component {...pageProps} />
+    </AuthProvider>
   )
 }
 

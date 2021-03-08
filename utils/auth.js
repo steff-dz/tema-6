@@ -10,8 +10,7 @@ export function AuthProvider({ children }) {
   //Storing the user in state.
   const [user, setUser] = useState(null)
 
-  //idk what these tokens or nookies are doing.......
-  //whenever ID token changes within the auth package held by firebase (auth state), whenever this changes it will fire async func
+  //whenever ID token changes within the auth package held by firebase (auth state), whenever this changes it will fire the async function.
   useEffect(() => {
     return firebaseInstance.auth().onIdTokenChanged(async (user) => {
       if (!user) {

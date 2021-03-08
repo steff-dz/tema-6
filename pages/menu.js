@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { LoginContext } from '../utils/status'
+//import { LoginContext } from '../utils/status'
 //import firebaseInstance from '../config/firebase'
 //import Link from 'next/link'
 import styled from 'styled-components'
@@ -7,12 +7,15 @@ import getMenuData from '../components/GetMenu'
 import MenuSkeleton from '../components/MenuSkeleton'
 import PageMenu from '../components/PageMenu'
 import { Wrapper } from '../components/Wrapper'
+import { useAuth } from '../utils/auth'
+import { useRouter } from 'next/router'
 //import { AuthContext } from '../utils/auth'
 
 const Menu = ({}) => {
-  const { loggedIn, setLoggedIn } = useContext(LoginContext)
+  //const { loggedIn, setLoggedIn } = useContext(LoginContext)
   //initial state
-
+  const user = useAuth()
+  const router = useRouter()
   const [menuData, setMenuData] = useState([])
 
   //states for the food data coming from firestore
@@ -93,9 +96,13 @@ const Menu = ({}) => {
           <div className="title-container">{item.name}</div>
         </InfoContainer>
 
-        <CheckoutBtn key={item.name} className="checkout-btn">
+        <button
+          key={item.name}
+          onClick={() => checkOutItem(item.id)}
+          className={user ? '' : 'toggle-btn'}
+        >
           Check Out
-        </CheckoutBtn>
+        </button>
       </FoodArticle>
     ))
   }
@@ -126,10 +133,15 @@ const Menu = ({}) => {
     }
   }
 
+  function checkOutItem(name) {
+    console.log(name)
+    router.push(`/food/${name}`)
+  }
+
   return (
     <>
       <PageMenu />
-      {loggedIn ? <h4>You are logged in!</h4> : <h4>You are NOT logged in!</h4>}
+
       <Wrapper>
         <MenuNav>
           <ul>
@@ -189,6 +201,10 @@ const FoodArticle = styled.article`
   height: fit-content;
   display: flex;
   flex-direction: column;
+
+  .toggle-btn {
+    display: none;
+  }
 `
 
 const InfoContainer = styled.div`

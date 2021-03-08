@@ -18,10 +18,6 @@ const SiteMenu = () => {
   })
 
   function handleSignOut() {
-    // if (loggedIn === false) {
-    //   console.log('you are not logged in! ')
-    //   return
-    // } else {
     firebaseInstance
       .auth()
       .signOut()
