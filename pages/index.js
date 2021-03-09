@@ -1,18 +1,23 @@
 import React from 'react'
+import styled from 'styled-components'
 import SiteMenu from '../components/SiteMenu'
 import SiteFooter from '../components/SiteFooter'
 import { useAuth } from '../utils/auth'
 
 export default function Home() {
-  //console.log(props.value)
-  //Home.contextType = AuthProvider
-  //console.log(value)
-  //const thisUser = value.user
-  //console.log(thisUser)
   return (
-    <React.Fragment>
+    <MainBase>
       <SiteMenu />
       <SiteFooter />
-    </React.Fragment>
+    </MainBase>
   )
 }
+
+const MainBase = styled.main`
+  width: 100vw;
+  height: 100vh;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`

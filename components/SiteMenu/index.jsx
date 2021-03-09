@@ -31,61 +31,59 @@ const SiteMenu = () => {
   //}
 
   return (
-    <MainBase>
-      <SiteNav>
-        <Link href="/menu">
-          <motion.div
-            style={{ backgroundColor: '#FFBA6A' }}
-            initial={{ opacity: 0, y: -100 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 1, type: 'spring', stiffness: 130 }}
-          >
-            MENU
-          </motion.div>
-        </Link>
-        <Link href="/login">
-          <motion.div
-            style={{ backgroundColor: '#A46877' }}
-            initial={{ opacity: 0, y: -100, rotateZ: 50 }}
-            animate={{ opacity: 1, y: 0, rotateZ: 0 }}
-            transition={{ delay: 1, duration: 1, type: 'spring', stiffness: 130 }}
-            className={user ? 'toggle-button' : ''}
-          >
-            LOGIN
-          </motion.div>
-        </Link>
-
+    <SiteNav>
+      <Link href="/menu">
+        <motion.div
+          style={{ backgroundColor: '#FFBA6A' }}
+          initial={{ opacity: 0, y: -100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 1, type: 'spring', stiffness: 130 }}
+        >
+          MENU
+        </motion.div>
+      </Link>
+      <Link href="/login">
         <motion.div
           style={{ backgroundColor: '#A46877' }}
           initial={{ opacity: 0, y: -100, rotateZ: 50 }}
           animate={{ opacity: 1, y: 0, rotateZ: 0 }}
           transition={{ delay: 1, duration: 1, type: 'spring', stiffness: 130 }}
-          onClick={() => handleSignOut()}
-          className={user ? '' : 'toggle-button'}
+          className={user ? 'toggle-button' : ''}
         >
-          LOG OUT
+          LOGIN
         </motion.div>
+      </Link>
 
-        <Link href="/login">
-          <motion.div
-            style={{ backgroundColor: '#FFBA6A' }}
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.8, duration: 1, type: 'spring', stiffness: 130 }}
-          >
-            ORDERS UP
-          </motion.div>
-        </Link>
-      </SiteNav>
-    </MainBase>
+      <motion.div
+        style={{ backgroundColor: '#A46877' }}
+        initial={{ opacity: 0, y: -100, rotateZ: 50 }}
+        animate={{ opacity: 1, y: 0, rotateZ: 0 }}
+        transition={{ delay: 1, duration: 1, type: 'spring', stiffness: 130 }}
+        onClick={() => handleSignOut()}
+        className={user ? '' : 'toggle-button'}
+      >
+        LOG OUT
+      </motion.div>
+
+      <Link href="/login">
+        <motion.div
+          style={{ backgroundColor: '#FFBA6A' }}
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.8, duration: 1, type: 'spring', stiffness: 130 }}
+        >
+          ORDERS UP
+        </motion.div>
+      </Link>
+    </SiteNav>
   )
 }
 
-const MainBase = styled.main`
-  height: 90vh;
-  width: 100vw;
-  border: 1px solid white;
-`
+// const MainBase = styled.main`
+//   height: 80vh;
+//   width: 100vw;
+//   border: 1px solid white;
+// `
 
 const SiteNav = styled.nav`
   /* border: 1px solid pink; */
