@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react'
 //import firebaseInstance from '../config/firebase'
 import { AuthProvider } from '../utils/auth'
-import { LoginContext } from '../utils/status'
+import { Cart } from '../utils/CartContext'
+
 import '../styles/globals.css'
-//import { AppWrapper } from '../context/AppContext'
 
 function MyApp({ Component, pageProps }) {
-  //console.log(StatusContext)
-  const [loggedIn, setLoggedIn] = useState(false)
-
   return (
     <AuthProvider>
-      <Component {...pageProps} />
+      <Cart>
+        <Component {...pageProps} />
+      </Cart>
     </AuthProvider>
   )
 }

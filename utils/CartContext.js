@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 //need to add total, quantity, and possibly a removal/delete option
+//maybe an action inside here that will push it up to the restaurant context...?
 
 const CartContext = createContext({
   productLines: [],
@@ -18,6 +19,7 @@ export const Cart = ({ children }) => {
   )
 }
 
+//this is the custom hook
 export const useCart = () => {
   return useContext(CartContext)
 }
