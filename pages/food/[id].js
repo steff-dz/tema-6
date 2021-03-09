@@ -4,9 +4,21 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import PageMenu from '../../components/PageMenu'
 import { Wrapper } from '../../components/Wrapper'
+import SiteFooter from '../../components/SiteFooter'
+import { useCart } from '../../utils/CartContext'
 
 function FoodPage({ item, error }) {
   //const [selectedItem, setSelectedItem] = useState(item)
+  const cart = useCart()
+  console.log(item)
+  function addToCart() {
+    console.log('clicky')
+    cart.addProductLine({
+      title: item.name,
+      price: item.price,
+      id: query,
+    })
+  }
 
   return (
     <>
@@ -16,9 +28,10 @@ function FoodPage({ item, error }) {
           <h2>{item.name}</h2>
           <img id={item.type === 'drink' ? 'drink' : ''} src={item.pic}></img>
           <p>Price: ${item.price}</p>
-          <button>Add To Cart</button>
+          <button onClick={() => addToCart()}>Add To Cart</button>
         </ItemContainer>
       </Wrapper>
+      <SiteFooter />
     </>
   )
 }

@@ -133,9 +133,8 @@ const Menu = ({}) => {
     }
   }
 
-  function checkOutItem(name) {
-    console.log(name)
-    router.push(`/food/${name}`)
+  function checkOutItem(id) {
+    router.push(`/food/${id}`)
   }
 
   return (
