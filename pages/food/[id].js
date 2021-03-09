@@ -15,6 +15,8 @@ function FoodPage({ item, error }) {
         <ItemContainer>
           <h2>{item.name}</h2>
           <img id={item.type === 'drink' ? 'drink' : ''} src={item.pic}></img>
+          <p>Price: ${item.price}</p>
+          <button>Add To Cart</button>
         </ItemContainer>
       </Wrapper>
     </>
@@ -42,18 +44,31 @@ const ItemContainer = styled.article`
     font-size: 3.5rem;
     color: #ffba6a;
   }
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid white;
+  /* border: 1px solid grey; */
   height: 60vh;
 
   #drink {
     height: 200px;
     width: auto;
   }
+
   img {
     width: 250px;
+  }
+
+  p {
+    font-size: 2.5rem;
+    color: white;
+  }
+
+  button {
+    padding: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
   }
 `
 
