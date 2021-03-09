@@ -7,7 +7,7 @@ import { LoginContext } from '../../utils/status'
 import { useAuth } from '../../utils/auth'
 
 const SiteMenu = () => {
-  const { loggedIn, setLoggedIn } = useContext(LoginContext)
+  //const { loggedIn, setLoggedIn } = useContext(LoginContext)
   //const {user, setUser} = useAuth()
   //const { ...values } = useAuth()
   const user = useAuth()
@@ -22,8 +22,6 @@ const SiteMenu = () => {
       .auth()
       .signOut()
       .then(() => {
-        setLoggedIn(false)
-
         console.log('you signed out')
       })
       .catch((error) => {
@@ -84,8 +82,9 @@ const SiteMenu = () => {
 }
 
 const MainBase = styled.main`
-  height: 100vh;
+  height: 90vh;
   width: 100vw;
+  border: 1px solid white;
 `
 
 const SiteNav = styled.nav`

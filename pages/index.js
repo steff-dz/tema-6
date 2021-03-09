@@ -1,5 +1,6 @@
 import React from 'react'
 import SiteMenu from '../components/SiteMenu'
+import SiteFooter from '../components/SiteFooter'
 import { useAuth } from '../utils/auth'
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
   return (
     <React.Fragment>
       <SiteMenu />
+      <SiteFooter />
     </React.Fragment>
   )
 }
