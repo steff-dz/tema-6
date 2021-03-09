@@ -28,7 +28,18 @@ const SignUp = () => {
     e.preventDefault()
 
     try {
-      await firebaseInstance.auth().createUserWithEmailAndPassword(userEmail, userPassword)
+      const newUser = await firebaseInstance
+        .auth()
+        .createUserWithEmailAndPassword(userEmail, userPassword)
+      const userCollection = await firebaseInstance.firestore().collection('users')
+      const userID = newUser.uid
+
+      userCollection.doc(userID).set({
+        name: userName,
+        email: userEmail,
+        password: userPassword,
+      })
+
       console.log('you made a new user!', userEmail, userPassword)
     } catch (e) {
       console.log('you failed!', e)
@@ -67,7 +78,7 @@ const SignUp = () => {
             inputName="password"
             inputId="password"
             inputType="password"
-            inputPlaceholder="your pasword"
+            inputPlaceholder="your password"
             labelText="Password:"
             value={userPassword}
             inputChangeHandler={(e) => handlePasswordChange(e)}
