@@ -14,7 +14,7 @@ const SiteFooter = () => {
   function renderShoppingCart() {
     return (
       <>
-        <ShoppingCartSimple size={40} />
+        <ShoppingCartSimple color="white" size={40} weight="fill" />
       </>
     )
   }
@@ -23,7 +23,7 @@ const SiteFooter = () => {
 }
 
 const FooterBase = styled.footer`
-  border: 1px solid yellow;
+  border: 1px solid grey;
   width: 100vw;
   height: 10vh;
 `
