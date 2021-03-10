@@ -21,7 +21,7 @@ const SiteFooter = () => {
     return (
       <article>
         <ShoppingCartSimple color="white" size={50} weight="fill" />
-        <p>{cart.productLines === undefined ? 'Your cart is empty!' : 'Something here'}</p>
+        <p>{cart.productLines.length > 0 ? 'Something here' : 'Your cart is empty!'}</p>
       </article>
     )
   }

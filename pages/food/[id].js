@@ -8,16 +8,20 @@ import SiteFooter from '../../components/SiteFooter'
 import { useCart } from '../../utils/CartContext'
 
 function FoodPage({ item, error }) {
-  //const [selectedItem, setSelectedItem] = useState(item)
   const cart = useCart()
+
   console.log(item)
+
+  //Add to cart function. What important info should I be including here? Name/Id of the person ordering, perhaps? And a boolean completed/incomplete property? And perhaps a paid/unpaid property?
   function addToCart() {
-    console.log('clicky')
+    //console.log('clicky')
     cart.addProductLine({
       title: item.name,
       price: item.price,
-      id: query,
+      id: item.id,
     })
+
+    console.log(cart.productLines)
   }
 
   return (
@@ -43,6 +47,7 @@ FoodPage.getInitialProps = async ({ query }) => {
     const document = await collection.doc(`${query.id}`).get()
 
     const item = {
+      id: document.id,
       ...document.data(),
     }
 
