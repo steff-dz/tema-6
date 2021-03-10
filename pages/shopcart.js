@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import firebaseInstance from '../config/firebase'
 import PageMenu from '../components/PageMenu'
 import { Wrapper } from '../components/Wrapper'
 import { PageTitle } from '../components/PageTitle'
@@ -9,7 +10,6 @@ import { useCart } from '../utils/CartContext'
 const Shopcart = () => {
   const user = useAuth()
   const cart = useCart()
-  console.log(cart.total)
 
   function renderItems() {
     return cart.productLines.map((item) => (
@@ -17,6 +17,26 @@ const Shopcart = () => {
         {item.title} - ${item.price}
       </li>
     ))
+  }
+
+  //add a 'order has been received message
+  function handleOrderPush() {
+    const collection = firebaseInstance.firestore().collection('orders')
+    collection
+      .doc()
+      .set({
+        customer: user.displayName,
+        items: [...cart.productLines],
+        complete: false,
+        paid: false,
+        status: 'prepping',
+      })
+      .then(() => {
+        console.log('pushed to firebase wooo')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   return (
@@ -27,6 +47,7 @@ const Shopcart = () => {
         <CartContainer>
           <ul>{cart.quantity > 0 ? renderItems() : 'Your cart is empty!'}</ul>
           <TotalContainer>Your total: ${cart.total}.00</TotalContainer>
+          <OrderButton onClick={() => handleOrderPush()}>Place Order</OrderButton>
         </CartContainer>
       </Wrapper>
     </MainBase>
@@ -54,10 +75,16 @@ const CartContainer = styled.article`
 `
 
 const TotalContainer = styled.div`
-  border: 1px solid green;
   font-size: 2rem;
   background-color: white;
   color: black;
+`
+
+const OrderButton = styled.button`
+  font-size: 2rem;
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 1rem;
 `
 
 export default Shopcart
