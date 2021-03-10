@@ -21,10 +21,12 @@ export const Cart = ({ children }) => {
   //keeping track of the amount of things in the cart
   useEffect(() => {
     setQuantity(productLines.length)
-  })
+  }, [productLines])
 
   return (
-    <CartContext.Provider value={{ productLines, addProductLine }}>{children}</CartContext.Provider>
+    <CartContext.Provider value={{ productLines, addProductLine, quantity }}>
+      {children}
+    </CartContext.Provider>
   )
 }
 

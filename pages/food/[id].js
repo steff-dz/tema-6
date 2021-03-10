@@ -6,22 +6,27 @@ import PageMenu from '../../components/PageMenu'
 import { Wrapper } from '../../components/Wrapper'
 import SiteFooter from '../../components/SiteFooter'
 import { useCart } from '../../utils/CartContext'
+import { useAuth } from '../../utils/auth'
 
 function FoodPage({ item, error }) {
   const cart = useCart()
+  const user = useAuth()
 
-  console.log(item)
+  //console.log(item)
 
   //Add to cart function. What important info should I be including here? Name/Id of the person ordering, perhaps? And a boolean completed/incomplete property? And perhaps a paid/unpaid property?
   function addToCart() {
     //console.log('clicky')
     cart.addProductLine({
+      id: item.id,
       title: item.name,
       price: item.price,
-      id: item.id,
+      toppings: item.toppings ? item.toppings : 'no toppings',
+      complete: false,
+      paid: false,
     })
 
-    console.log(cart.productLines)
+    console.log(cart.productLines, user.uid, user.displayName)
   }
 
   return (

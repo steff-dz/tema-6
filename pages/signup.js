@@ -31,6 +31,11 @@ const SignUp = () => {
       const newUser = await firebaseInstance
         .auth()
         .createUserWithEmailAndPassword(userEmail, userPassword)
+
+      await newUser.user.updateProfile({
+        displayName: userName,
+      })
+
       const userCollection = await firebaseInstance.firestore().collection('users')
       const userID = newUser.uid
 
