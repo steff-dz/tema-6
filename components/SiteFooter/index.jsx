@@ -4,6 +4,7 @@ import { PageTitle } from '../PageTitle'
 import { useAuth } from '../../utils/auth'
 import { useCart } from '../../utils/CartContext'
 import { ShoppingCartSimple } from 'phosphor-react'
+import Link from 'next/link'
 
 const SiteFooter = () => {
   const user = useAuth()
@@ -20,7 +21,9 @@ const SiteFooter = () => {
   function renderShoppingCart() {
     return (
       <article>
-        <ShoppingCartSimple color="white" size={50} weight="fill" />
+        <Link href="/shopcart">
+          <ShoppingCartSimple color="white" size={50} weight="fill" />
+        </Link>
         <p>
           {cart.productLines.length > 0
             ? `Something here! ${cart.quantity}`

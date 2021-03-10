@@ -7,24 +7,31 @@ const CartContext = createContext({
   productLines: [],
   addProductLine: () => {},
   quantity: 0,
+  total: 0,
 })
 
 export const Cart = ({ children }) => {
   const [productLines, setProductLines] = useState([])
   const [quantity, setQuantity] = useState(0)
+  const [total, setTotal] = useState(0)
 
   //function to add more products to cart
   const addProductLine = (product) => {
     setProductLines([...productLines, product])
   }
 
-  //keeping track of the amount of things in the cart
+  //keeping track of total price and quantity of all items.
   useEffect(() => {
+    const total = productLines.reduce((prev, curr) => {
+      return prev + curr.price
+    }, 0)
+    setTotal(total)
+
     setQuantity(productLines.length)
   }, [productLines])
 
   return (
-    <CartContext.Provider value={{ productLines, addProductLine, quantity }}>
+    <CartContext.Provider value={{ productLines, addProductLine, quantity, total }}>
       {children}
     </CartContext.Provider>
   )

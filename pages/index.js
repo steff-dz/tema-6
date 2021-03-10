@@ -16,7 +16,7 @@ export default function Home() {
 const MainBase = styled.main`
   width: 100vw;
   height: 100vh;
-  border: 1px solid white;
+  /* border: 1px solid white; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;

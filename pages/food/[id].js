@@ -36,7 +36,7 @@ function FoodPage({ item, error }) {
         <ItemContainer>
           <h2>{item.name}</h2>
           <img id={item.type === 'drink' ? 'drink' : ''} src={item.pic}></img>
-          <p>Price: ${item.price}</p>
+          <p>Price: ${item.price}.00</p>
           <button onClick={() => addToCart()}>Add To Cart</button>
         </ItemContainer>
       </Wrapper>
