@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <MainBase>
-        <PageMenu />
+        <PageMenu title={`Børre's Burgers`} />
         <SiteMenu />
         <SiteFooter />
       </MainBase>

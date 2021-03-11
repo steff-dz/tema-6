@@ -41,7 +41,7 @@ const Shopcart = () => {
 
   return (
     <MainBase>
-      <PageMenu />
+      <PageMenu title={'B.'} />
       <Wrapper>
         <PageTitle>{user ? `${user.displayName}'s Cart` : 'Your cart'}</PageTitle>
         <CartContainer>

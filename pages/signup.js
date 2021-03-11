@@ -57,7 +57,7 @@ const SignUp = () => {
 
   return (
     <>
-      <PageMenu />
+      <PageMenu title={'B.'} />
       <Wrapper>
         <PageTitle>Sign Up Form</PageTitle>
         <FormBase name="sign-up" action="/" method="GET" onSubmit={(e) => handleSubmit(e)}>

@@ -2,11 +2,11 @@ import React from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 
-const PageMenu = () => {
+const PageMenu = ({ title }) => {
   return (
     <HeaderBase>
       <Link href="/">
-        <h1>B.</h1>
+        <h1>{title}</h1>
       </Link>
     </HeaderBase>
   )
@@ -26,6 +26,10 @@ const HeaderBase = styled.header`
     color: #ffba6a;
     font-size: 5.5rem;
     height: fit-content;
+
+    @media only screen and (max-width: 380px) {
+      font-size: 5rem;
+    }
   }
 `
 export default PageMenu

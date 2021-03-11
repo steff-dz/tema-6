@@ -76,8 +76,6 @@ const SiteMenu = () => {
 const SiteNav = styled.nav`
   margin: 0 auto;
   margin-top: 2rem;
-  /* width: 80%;
-  height: 100%; */
   width: 90vw;
   padding-bottom: 50%;
   font-size: 3rem;

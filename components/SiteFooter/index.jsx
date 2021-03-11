@@ -15,7 +15,7 @@ const SiteFooter = () => {
   }, [cart.productLines])
 
   function renderLoginMessage() {
-    return <PageTitle>Login or sign up to start eating!</PageTitle>
+    return <PageTitle>Login or sign up!</PageTitle>
   }
 
   function renderShoppingCart() {

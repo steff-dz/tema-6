@@ -30,7 +30,7 @@ function FoodPage({ item, error }) {
 
   return (
     <>
-      <PageMenu />
+      <PageMenu title={'B.'} />
       <Wrapper>
         <ItemContainer>
           <h2>{item.name}</h2>

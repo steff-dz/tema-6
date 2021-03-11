@@ -40,7 +40,7 @@ const Login = () => {
 
   return (
     <>
-      <PageMenu />
+      <PageMenu title={'B.'} />
       <MainBase>
         <Wrapper>
           <PageTitle>{formComplete ? `You're all set! ` : `Log in here !`}</PageTitle>
