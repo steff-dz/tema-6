@@ -1,17 +1,12 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import firebaseInstance from '../../config/firebase'
-import { LoginContext } from '../../utils/status'
 import { useAuth } from '../../utils/auth'
 
 const SiteMenu = () => {
-  //const { loggedIn, setLoggedIn } = useContext(LoginContext)
-  //const {user, setUser} = useAuth()
-  //const { ...values } = useAuth()
   const user = useAuth()
-  //console.log(user)
 
   useEffect(() => {
     console.log(user)
@@ -28,7 +23,6 @@ const SiteMenu = () => {
         console.log(error)
       })
   }
-  //}
 
   return (
     <SiteNav>
@@ -68,7 +62,7 @@ const SiteMenu = () => {
       <Link href="/login">
         <motion.div
           style={{ backgroundColor: '#FFBA6A' }}
-          initial={{ opacity: 0, y: 100 }}
+          initial={{ opacity: 0, y: 200 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.8, duration: 1, type: 'spring', stiffness: 130 }}
         >
@@ -79,17 +73,13 @@ const SiteMenu = () => {
   )
 }
 
-// const MainBase = styled.main`
-//   height: 80vh;
-//   width: 100vw;
-//   border: 1px solid white;
-// `
-
 const SiteNav = styled.nav`
-  /* border: 1px solid pink; */
   margin: 0 auto;
-  width: 80%;
-  height: 60%;
+  margin-top: 2rem;
+  /* width: 80%;
+  height: 100%; */
+  width: 90vw;
+  padding-bottom: 50%;
   font-size: 3rem;
   display: flex;
   flex-direction: column;
@@ -111,29 +101,3 @@ const SiteNav = styled.nav`
 `
 
 export default SiteMenu
-
-// useEffect(() => {
-//   if (values === undefined) {
-//     console.log('not logged in')
-//   } else {
-//     console.log(values.email)
-//   }
-// })
-
-// useEffect(() => {
-//   const user = firebaseInstance.auth().currentUser
-//   console.log(user, 'from get current user method')
-//   authStateListener()
-// })
-
-// this is using auth and firebase to check if someone is here
-// Could just make this an importable component to check whether a user is signed in or not?
-// function authStateListener() {
-//   firebaseInstance.auth().onAuthStateChanged((user) => {
-//     if (user) {
-//       console.log(user, 'from auth state listener on index')
-//     } else {
-//       console.log('no user here from auth state listener')
-//     }
-//   })
-// }

@@ -25,10 +25,6 @@ const HeaderBase = styled.header`
     font-family: 'Pacifico', cursive;
     color: #ffba6a;
     font-size: 5.5rem;
-    /* position: absolute;
-    top: -5%; */
-    /* display: inline; */
-
     height: fit-content;
   }
 `

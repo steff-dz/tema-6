@@ -16,7 +16,6 @@ function FoodPage({ item, error }) {
 
   //Add to cart function. What important info should I be including here? Name/Id of the person ordering, perhaps? And a boolean completed/incomplete property? And perhaps a paid/unpaid property?
   function addToCart() {
-    //console.log('clicky')
     cart.addProductLine({
       id: item.id,
       title: item.name,
@@ -71,7 +70,6 @@ const ItemContainer = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 1px solid grey; */
   height: 60vh;
 
   #drink {

@@ -41,6 +41,8 @@ const FooterBase = styled.footer`
   height: 15vh;
   padding: 1rem;
   background-color: #078080;
+  position: fixed;
+  bottom: 0;
 
   article {
     display: flex;

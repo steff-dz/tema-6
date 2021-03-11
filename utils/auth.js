@@ -27,7 +27,6 @@ export function AuthProvider({ children }) {
     })
   })
 
-  //I dont think this is actually working....
   useEffect(() => {
     const handle = setInterval(async () => {
       const user = firebaseInstance.auth().currentUser

@@ -1,23 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
+import PageMenu from '../components/PageMenu'
 import SiteMenu from '../components/SiteMenu'
 import SiteFooter from '../components/SiteFooter'
-import { useAuth } from '../utils/auth'
 
 export default function Home() {
   return (
-    <MainBase>
-      <SiteMenu />
-      <SiteFooter />
-    </MainBase>
+    <>
+      <MainBase>
+        <PageMenu />
+        <SiteMenu />
+        <SiteFooter />
+      </MainBase>
+    </>
   )
 }
 
 const MainBase = styled.main`
   width: 100vw;
-  height: 100vh;
-  /* border: 1px solid white; */
+  height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+
+  /* border: 1px solid yellow; */
 `

@@ -1,7 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react'
-//import { LoginContext } from '../utils/status'
-//import firebaseInstance from '../config/firebase'
-//import Link from 'next/link'
 import styled from 'styled-components'
 import getMenuData from '../components/GetMenu'
 import MenuSkeleton from '../components/MenuSkeleton'
@@ -9,11 +6,8 @@ import PageMenu from '../components/PageMenu'
 import { Wrapper } from '../components/Wrapper'
 import { useAuth } from '../utils/auth'
 import { useRouter } from 'next/router'
-//import { AuthContext } from '../utils/auth'
 
 const Menu = ({}) => {
-  //const { loggedIn, setLoggedIn } = useContext(LoginContext)
-  //initial state
   const user = useAuth()
   const router = useRouter()
   const [menuData, setMenuData] = useState([])
@@ -30,37 +24,17 @@ const Menu = ({}) => {
     setMenuData(result)
   }
 
-  //Retrieving menu data if the state is empty
-  // useEffect(() => {
-  // if (menuData.length === 0 || menuData === undefined) {
-  // getMenuData()
-  // console.log(AuthContext.user)
-  // fetchMenuData()
-  // } else {
-  // return
-  // }, [])
-
   useEffect(() => {
     if (menuData.length === 0 || menuData === undefined) {
       fetchMenuData()
     } else {
-      //console.log('stuff from useEffect')
       return
     }
   })
 
-  // useEffect(() => {
-  //   if (menuData.length === 0 || menuData === undefined) {
-  //     getMenuData()
-  //   } else {
-  //     console.log('something went wrong')
-  //   }
-  // })
-
   //Filtering and sorting out the different food types into different states for organization.
   useEffect(() => {
     if (menuData === undefined) {
-      //console.log('nothing here')
       fetchMenuData()
     } else {
       setBurgers([...menuData.filter((item) => item.type === 'burger')])
@@ -157,7 +131,6 @@ const Menu = ({}) => {
 }
 
 const MenuNav = styled.nav`
-  /* width: 80vw; */
   padding-top: 1rem;
   padding-bottom: 1rem;
   height: fit-content;
@@ -184,9 +157,8 @@ const MenuNav = styled.nav`
 `
 
 const MainBase = styled.main`
-  /* border: 1px solid green; */
   min-height: 100vh;
-  /* width: 100vw; */
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -195,7 +167,6 @@ const MainBase = styled.main`
 `
 
 const FoodArticle = styled.article`
-  /* border: 1px solid blue; */
   width: 100%;
   height: fit-content;
   display: flex;
@@ -207,7 +178,6 @@ const FoodArticle = styled.article`
 `
 
 const InfoContainer = styled.div`
-  /* border: 1px solid pink; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -231,13 +201,4 @@ const InfoContainer = styled.div`
     background-color: #078080;
   }
 `
-const CheckoutBtn = styled.button`
-  width: 100%;
-  font-size: 2rem;
-`
 export default Menu
-
-// <ClickCard activeStyle={{ opacity: '1' }}>
-// <h2>{item.toppings === undefined ? '' : 'Toppings'}</h2>
-// <ul>{renderToppings(item.toppings)}</ul>
-// </ClickCard>
