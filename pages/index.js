@@ -24,6 +24,4 @@ const MainBase = styled.main`
   justify-content: space-between;
   overflow: hidden;
   position: relative;
-
-  /* border: 1px solid yellow; */
 `

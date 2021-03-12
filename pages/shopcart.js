@@ -14,7 +14,7 @@ const Shopcart = () => {
   function renderItems() {
     return cart.productLines.map((item) => (
       <li key={item.id}>
-        {item.title} - ${item.price}
+        {item.title} - ${item.price}.00
       </li>
     ))
   }
@@ -30,6 +30,7 @@ const Shopcart = () => {
         complete: false,
         paid: false,
         status: 'prepping',
+        bill: cart.total,
       })
       .then(() => {
         console.log('pushed to firebase wooo')

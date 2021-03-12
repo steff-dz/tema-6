@@ -7,11 +7,13 @@ import { FormBase } from '../components/FormBase'
 import InputBlock from '../components/InputBlock'
 import Link from 'next/link'
 import firebaseInstance from '../config/firebase'
+import { useAuth } from '../utils/auth'
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
-  const [formComplete, setFormComplete] = useState(false)
+
+  const user = useAuth()
 
   function handleEmailChange(e) {
     setLoginEmail(e.target.value)
@@ -35,7 +37,6 @@ const Login = () => {
 
     setLoginEmail('')
     setLoginPassword('')
-    setFormComplete(true)
   }
 
   return (
@@ -43,9 +44,9 @@ const Login = () => {
       <PageMenu title={'B.'} />
       <MainBase>
         <Wrapper>
-          <PageTitle>{formComplete ? `You're all set! ` : `Log in here !`}</PageTitle>
+          <PageTitle>{user ? `You're all set! ` : `Log in here !`}</PageTitle>
           <FormBase
-            className={formComplete ? 'hide' : ''}
+            className={user ? 'hide' : ''}
             name="login-form"
             action="/"
             method="GET"
@@ -73,11 +74,11 @@ const Login = () => {
           </FormBase>
 
           <MessageContainer>
-            <PageTitle className={formComplete ? 'hide' : ''} as="h3">
+            <PageTitle className={user ? 'hide' : ''} as="h3">
               Not signed up?
             </PageTitle>
-            <Link href={formComplete ? `/menu` : `/signup`}>
-              <button>{formComplete ? 'Get some grub' : 'Register'}</button>
+            <Link href={user ? `/menu` : `/signup`}>
+              <button>{user ? 'Get some grub' : 'Register'}</button>
             </Link>
           </MessageContainer>
         </Wrapper>

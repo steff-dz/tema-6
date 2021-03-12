@@ -1,5 +1,6 @@
 //import React from 'react'
 import firebaseInstance from '../../config/firebase'
+
 async function getMenuData() {
   let menuArray = []
 
@@ -13,7 +14,7 @@ async function getMenuData() {
         ...el.data(),
       })
     })
-    //console.log(menuArray)
+
     return menuArray
   } catch (error) {
     console.log(error)

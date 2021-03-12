@@ -1,6 +1,7 @@
 import firebase from 'firebase'
 import 'firebase/auth'
 
+//if (!firebase.app.length) {
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -12,15 +13,12 @@ const firebaseConfig = {
 
 try {
   firebase.initializeApp(firebaseConfig)
-  //firebase auth
-  //Or is it firebaseConfig.auth.Auth.Persistence.SESSION??
+  console.log('app is on')
   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
 } catch (error) {
-  // if (!/already exists/.test(error.message)) {
-  //   console.error('firebase error')
-  // }
-  console.log
+  console.log(error)
 }
+//}
 
 const firebaseInstance = firebase
 //firebase.auth().setPersistence(firebaseInstance.auth.Auth.Persistance.SESSION)
