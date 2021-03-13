@@ -6,11 +6,13 @@ import { Wrapper } from '../components/Wrapper'
 import { PageTitle } from '../components/PageTitle'
 import { FormBase } from '../components/FormBase'
 import InputBlock from '../components/InputBlock'
+import { Router, useRouter } from 'next/router'
 
 const SignUp = () => {
   const [userName, setUserName] = useState('')
   const [userEmail, setUserEmail] = useState('')
   const [userPassword, setUserPassword] = useState('')
+  const router = useRouter()
 
   function handleNameChange(e) {
     setUserName(e.target.value)
@@ -53,6 +55,7 @@ const SignUp = () => {
     setUserName('')
     setUserEmail('')
     setUserPassword('')
+    router.push('/')
   }
 
   return (

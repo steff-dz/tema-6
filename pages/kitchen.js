@@ -7,6 +7,8 @@ import { PageTitle } from '../components/PageTitle'
 
 const Kitchen = () => {
   const [currOrders, setCurrOrders] = useState(null)
+  //const [completedOrders, setCompletedOrders] = useState(null)
+
   const OrdersCollection = firebaseInstance.firestore().collection('orders')
 
   useEffect(() => {
@@ -14,6 +16,10 @@ const Kitchen = () => {
 
     getOrders()
   }, [])
+
+  // useEffect(() => {
+  //   console.log(completedOrders)
+  // }, [completedOrders])
 
   function getOrders() {
     OrdersCollection.onSnapshot((querySnapshot) => {
@@ -37,7 +43,7 @@ const Kitchen = () => {
           <ul>{renderItems(order.items)}</ul>
         </div>
 
-        <button>Complete</button>
+        <button onClick={() => handleComplete(order)}>Complete</button>
       </OrderArticle>
     ))
   }
@@ -45,8 +51,22 @@ const Kitchen = () => {
   function renderItems(data) {
     let foodItems = []
     foodItems.push(...data.filter((el) => el.type !== 'drink'))
-
     return foodItems.map((el) => <li key={el.id}>{el.title}</li>)
+  }
+
+  function handleComplete(data) {
+    console.log(data.id)
+    let orderDoc = OrdersCollection.doc(`${data.id}`)
+    return orderDoc
+      .update({
+        complete: true,
+      })
+      .then(() => {
+        console.log('doc has been updated')
+      })
+      .catch((error) => {
+        console.error('you messed shit up', error)
+      })
   }
 
   return (
