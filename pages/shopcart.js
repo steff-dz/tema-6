@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import firebaseInstance from '../config/firebase'
+
 import PageMenu from '../components/PageMenu'
 import { Wrapper } from '../components/Wrapper'
 import { PageTitle } from '../components/PageTitle'

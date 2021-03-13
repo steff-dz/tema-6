@@ -1,4 +1,5 @@
 //as long as this files starst with brackets, it is dynamic. This is a Next thing.
+
 import firebaseInstance from '../../config/firebase'
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
@@ -20,9 +21,10 @@ function FoodPage({ item, error }) {
       id: item.id,
       title: item.name,
       price: item.price,
+      type: item.type,
       toppings: item.toppings ? item.toppings : 'no toppings',
-      complete: false,
-      paid: false,
+      //complete: false,
+      //paid: false,
     })
 
     console.log(cart.productLines, user.uid, user.displayName)

@@ -7,6 +7,8 @@ import { Wrapper } from '../components/Wrapper'
 import { useAuth } from '../utils/auth'
 import { useRouter } from 'next/router'
 
+console.log('woo')
+
 const Menu = ({}) => {
   const user = useAuth()
   const router = useRouter()
