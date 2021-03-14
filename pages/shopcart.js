@@ -20,14 +20,24 @@ const Shopcart = () => {
         <p>
           {item.title} - ${item.price}.00
         </p>
-        <button>
+        <button
+          onClick={() => {
+            handleDelete(item.id)
+          }}
+        >
           <XCircle size={35} />
         </button>
       </ItemContainer>
     ))
   }
 
-  //add a 'order has been received message
+  //function to handle deletes
+  function handleDelete(id) {
+    console.log('from cart file', id, cart.productLines)
+    cart.setProductLines(cart.productLines.filter((item) => item.id !== id))
+  }
+
+  //function to push the order to firestore
   function handleOrderPush() {
     const collection = firebaseInstance.firestore().collection('orders')
     collection
@@ -104,6 +114,9 @@ const ItemContainer = styled.div`
     background-color: #f9f871;
     border: none;
     cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+    }
   }
 `
 
@@ -124,6 +137,11 @@ const OrderButton = styled.button`
   background-color: white;
   font-weight: 600;
   cursor: pointer;
+
+  &:hover {
+    background-color: #333;
+    color: white;
+  }
 `
 
 export default Shopcart
