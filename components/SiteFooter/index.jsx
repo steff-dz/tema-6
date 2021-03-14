@@ -11,7 +11,7 @@ const SiteFooter = () => {
   const cart = useCart()
 
   useEffect(() => {
-    console.log(cart.productLines)
+    //console.log(cart.productLines)
   }, [cart.productLines])
 
   function renderLoginMessage() {

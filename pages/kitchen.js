@@ -4,22 +4,16 @@ import styled from 'styled-components'
 import PageMenu from '../components/PageMenu'
 import { Wrapper } from '../components/Wrapper'
 import { PageTitle } from '../components/PageTitle'
+//import { getOrders } from '../components/GetOrders'
 
 const Kitchen = () => {
   const [currOrders, setCurrOrders] = useState(null)
-  //const [completedOrders, setCompletedOrders] = useState(null)
 
   const OrdersCollection = firebaseInstance.firestore().collection('orders')
 
   useEffect(() => {
-    console.log('stuff here')
-
     getOrders()
-  }, [])
-
-  // useEffect(() => {
-  //   console.log(completedOrders)
-  // }, [completedOrders])
+  }, [currOrders])
 
   function getOrders() {
     OrdersCollection.onSnapshot((querySnapshot) => {
@@ -27,6 +21,7 @@ const Kitchen = () => {
       querySnapshot.forEach((doc) => {
         items.push({
           id: doc.id,
+
           ...doc.data(),
         })
       })
@@ -39,7 +34,7 @@ const Kitchen = () => {
     return incompleteOrders.map((order) => (
       <OrderArticle key={order.id}>
         <div>
-          <h2>For {order.customer}</h2>
+          <h2>Ticket #{order.id.slice(0, 4)}</h2>
           <ul>{renderItems(order.items)}</ul>
         </div>
 

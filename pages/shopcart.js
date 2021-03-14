@@ -1,7 +1,7 @@
 import React from 'react'
+import { Router, useRouter } from 'next/router'
 import styled from 'styled-components'
 import firebaseInstance from '../config/firebase'
-
 import PageMenu from '../components/PageMenu'
 import { Wrapper } from '../components/Wrapper'
 import { PageTitle } from '../components/PageTitle'
@@ -11,6 +11,7 @@ import { useCart } from '../utils/CartContext'
 const Shopcart = () => {
   const user = useAuth()
   const cart = useCart()
+  const router = useRouter()
 
   function renderItems() {
     return cart.productLines.map((item) => (
@@ -35,6 +36,7 @@ const Shopcart = () => {
       })
       .then(() => {
         console.log('pushed to firebase wooo')
+        router.push('/ordersup')
       })
       .catch((error) => {
         console.log(error)
