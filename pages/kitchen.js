@@ -21,7 +21,6 @@ const Kitchen = () => {
       querySnapshot.forEach((doc) => {
         items.push({
           id: doc.id,
-
           ...doc.data(),
         })
       })
