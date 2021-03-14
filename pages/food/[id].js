@@ -31,8 +31,6 @@ function FoodPage({ item, error }) {
       type: item.type,
       toppings: item.toppings ? item.toppings : 'no toppings',
     })
-
-    console.log(cart.productLines, 'from product pg')
   }
 
   return (

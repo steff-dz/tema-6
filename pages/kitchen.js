@@ -45,7 +45,11 @@ const Kitchen = () => {
   function renderItems(data) {
     let foodItems = []
     foodItems.push(...data.filter((el) => el.type !== 'drink'))
-    return foodItems.map((el) => <li key={el.id}>{el.title}</li>)
+    return foodItems.map((el) => (
+      <li key={el.id}>
+        {el.title} x {el.qty}
+      </li>
+    ))
   }
 
   function handleComplete(data) {
