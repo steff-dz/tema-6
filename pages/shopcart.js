@@ -5,6 +5,7 @@ import firebaseInstance from '../config/firebase'
 import PageMenu from '../components/PageMenu'
 import { Wrapper } from '../components/Wrapper'
 import { PageTitle } from '../components/PageTitle'
+import { XCircle } from 'phosphor-react'
 import { useAuth } from '../utils/auth'
 import { useCart } from '../utils/CartContext'
 
@@ -15,9 +16,14 @@ const Shopcart = () => {
 
   function renderItems() {
     return cart.productLines.map((item) => (
-      <li key={item.id}>
-        {item.title} - ${item.price}.00
-      </li>
+      <ItemContainer key={item.id}>
+        <p>
+          {item.title} - ${item.price}.00
+        </p>
+        <button>
+          <XCircle size={35} />
+        </button>
+      </ItemContainer>
     ))
   }
 
@@ -47,10 +53,14 @@ const Shopcart = () => {
     <MainBase>
       <PageMenu title={'B.'} />
       <Wrapper>
-        <PageTitle>{user ? `${user.displayName}'s Cart` : 'Your cart'}</PageTitle>
+        <PageTitle style={{ fontWeight: '100' }}>
+          {user ? `${user.displayName}'s Cart` : 'Your cart'}
+        </PageTitle>
         <CartContainer>
-          <ul>{cart.quantity > 0 ? renderItems() : 'Your cart is empty!'}</ul>
-          <TotalContainer>Your total: ${cart.total}.00</TotalContainer>
+          {cart.quantity > 0 ? renderItems() : 'Your cart is empty!'}
+          <TotalContainer>
+            Your total: <span>${cart.total}.00</span>
+          </TotalContainer>
           <OrderButton onClick={() => handleOrderPush()}>Place Order</OrderButton>
         </CartContainer>
       </Wrapper>
@@ -67,28 +77,53 @@ const MainBase = styled.main`
 `
 
 const CartContainer = styled.article`
-  border: 1px solid grey;
+  /* border: 1px solid pink; */
   min-height: 50vh;
   width: 100%;
+  background-color: #f9f871;
+  border-radius: 10px;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`
 
-  ul {
-    font-size: 2rem;
-    color: white;
-    list-style-position: inside;
+const ItemContainer = styled.div`
+  font-size: 2.1rem;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    border-bottom: 1px solid grey;
+    background-color: white;
+    padding: 0 0.5rem;
+  }
+
+  button {
+    background-color: #f9f871;
+    border: none;
+    cursor: pointer;
   }
 `
 
 const TotalContainer = styled.div`
-  font-size: 2rem;
-  background-color: white;
+  font-size: 2.5rem;
   color: black;
+
+  span {
+    font-weight: 600;
+  }
 `
 
 const OrderButton = styled.button`
   font-size: 2rem;
   padding: 1rem;
   border-radius: 10px;
-  margin: 1rem;
+  width: 50%;
+  background-color: white;
+  font-weight: 600;
+  cursor: pointer;
 `
 
 export default Shopcart
