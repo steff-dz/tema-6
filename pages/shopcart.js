@@ -46,8 +46,6 @@ const Shopcart = () => {
         customer: user.displayName,
         items: [...cart.productLines],
         complete: false,
-        paid: false,
-        status: 'prepping',
         bill: cart.total,
       })
       .then(() => {
