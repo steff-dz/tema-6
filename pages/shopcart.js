@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Router, useRouter } from 'next/router'
 import styled from 'styled-components'
 import firebaseInstance from '../config/firebase'
@@ -10,11 +10,26 @@ import { useAuth } from '../utils/auth'
 import { useCart } from '../utils/CartContext'
 
 const Shopcart = () => {
+  const [counter, setCounter] = useState(null)
   const user = useAuth()
   const cart = useCart()
   const router = useRouter()
+  const docColl = []
 
-  console.log(cart.quantity, 'from shopcart file', cart.total)
+  testOrders()
+
+  async function testOrders() {
+    try {
+      const orderCollection = await firebaseInstance.firestore().collection('orders')
+      const res = await orderCollection.get()
+      res.forEach((el) => {
+        docColl.push(el)
+      })
+      setCounter(docColl.length)
+    } catch (err) {
+      console.log(err, 'from shopcart file')
+    }
+  }
 
   function renderItems() {
     return cart.productLines.map((item) => (
@@ -49,10 +64,11 @@ const Shopcart = () => {
         items: [...cart.productLines],
         complete: false,
         bill: cart.total,
+        orderNum: counter + 1,
       })
       .then(() => {
         console.log('pushed to firebase wooo')
-        router.push('/ordersup')
+        //router.push('/ordersup')
       })
       .catch((error) => {
         console.log(error)
@@ -67,6 +83,7 @@ const Shopcart = () => {
           {user ? `${user.displayName}'s Cart` : 'Your cart'}
         </PageTitle>
         <CartContainer>
+          <p>OrdNum #{counter + 1}</p>
           {cart.quantity > 0 ? renderItems() : 'Your cart is empty!'}
           <TotalContainer>
             Your total: <span>${cart.total}.00</span>

@@ -9,15 +9,7 @@ import { PageTitle } from '../components/PageTitle'
 const Kitchen = () => {
   const [currOrders, setCurrOrders] = useState(null)
 
-  try {
-    const OrdersCollection = firebaseInstance.firestore().collection('orders')
-
-    getOrders(OrdersCollection)
-  } catch (err) {
-    console.log(err, 'err from kitchen pg')
-  }
-
-  function getOrders(OrdersCollection) {
+  const getOrders = (OrdersCollection) => {
     OrdersCollection.onSnapshot((querySnapshot) => {
       const items = []
       querySnapshot.forEach((doc) => {
@@ -30,12 +22,22 @@ const Kitchen = () => {
     })
   }
 
+  useEffect(() => {
+    try {
+      const OrdersCollection = firebaseInstance.firestore().collection('orders')
+
+      getOrders(OrdersCollection)
+    } catch (err) {
+      console.log(err, 'err from kitchen pg')
+    }
+  }, [])
+
   function renderOrders() {
     let incompleteOrders = [...currOrders.filter((order) => order.complete === false)]
     return incompleteOrders.map((order) => (
       <OrderArticle key={order.id}>
         <div>
-          <h2>Ticket #{order.id.slice(0, 4)}</h2>
+          <h2>Ticket #{order.orderNum}</h2>
           <ul>{renderItems(order.items)}</ul>
         </div>
 
@@ -56,6 +58,7 @@ const Kitchen = () => {
 
   function handleComplete(data) {
     console.log(data.id)
+    const OrdersCollection = firebaseInstance.firestore().collection('orders')
     let orderDoc = OrdersCollection.doc(`${data.id}`)
     return orderDoc
       .update({

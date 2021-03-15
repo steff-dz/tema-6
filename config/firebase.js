@@ -37,7 +37,7 @@ if (typeof window !== 'undefined' && !firebase.apps.length) {
 // } catch (error) {
 //   console.log(error, 'from firebaseconfig')
 // }
-//}
+// }
 
 const firebaseInstance = firebase
 //firebase.auth().setPersistence(firebaseInstance.auth.Auth.Persistance.SESSION)

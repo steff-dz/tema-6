@@ -9,30 +9,7 @@ const OrdersUp = () => {
   const [doneOrders, setDoneOrders] = useState([])
   const [currOrders, setCurrOrders] = useState([])
 
-  try {
-    const CompletedOrders = firebaseInstance
-      .firestore()
-      .collection('orders')
-      .where('complete', '==', true)
-
-    const IncompleteOrders = firebaseInstance
-      .firestore()
-      .collection('orders')
-      .where('complete', '==', false)
-
-    getOrders(CompletedOrders, IncompleteOrders)
-  } catch (err) {
-    console.log(err, 'from ordersup pg')
-  }
-
-  // useEffect(() => {
-  //   console.log('curr orders:', currOrders, 'done orders:', doneOrders)
-  //   if (currOrders.length === 0) {
-  //     getOrders()
-  //   }
-  // }, [currOrders])
-
-  function getOrders(CompletedOrders, IncompleteOrders) {
+  const getOrders = (CompletedOrders, IncompleteOrders) => {
     CompletedOrders.onSnapshot((querySnapshot) => {
       const orders = []
       querySnapshot.forEach((doc) => {
@@ -56,6 +33,93 @@ const OrdersUp = () => {
     })
   }
 
+  useEffect(() => {
+    try {
+      const CompletedOrders = firebaseInstance
+        .firestore()
+        .collection('orders')
+        .where('complete', '==', true)
+
+      const IncompleteOrders = firebaseInstance
+        .firestore()
+        .collection('orders')
+        .where('complete', '==', false)
+
+      getOrders(CompletedOrders, IncompleteOrders)
+    } catch (err) {
+      console.log(err, 'from odersup file')
+    }
+  }, [])
+
+  //try {
+  // const CompletedOrders = firebaseInstance
+  //   .firestore()
+  //   .collection('orders')
+  //   .where('complete', '==', true)
+
+  // CompletedOrders.onSnapshot((querySnapshot) => {
+  //   const orders = []
+  //   querySnapshot.forEach((doc) => {
+  //     orders.push({
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     })
+  //   })
+  //   setDoneOrders(orders)
+  // })
+
+  // const IncompleteOrders = firebaseInstance
+  //   .firestore()
+  //   .collection('orders')
+  //   .where('complete', '==', false)
+
+  // IncompleteOrders.onSnapshot((querySnapshot) => {
+  //   const orders = []
+  //   querySnapshot.forEach((doc) => {
+  //     orders.push({
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     })
+  //   })
+  //   setCurrOrders(orders)
+  // })
+
+  //getOrders(CompletedOrders, IncompleteOrders)
+  //} catch (err) {
+  //console.log(err, 'from ordersup pg')
+  //}
+
+  // useEffect(() => {
+  //   console.log('curr orders:', currOrders, 'done orders:', doneOrders)
+  //   if (currOrders.length === 0) {
+  //     getOrders()
+  //   }
+  // }, [currOrders])
+
+  // function getOrders(CompletedOrders, IncompleteOrders) {
+  //   CompletedOrders.onSnapshot((querySnapshot) => {
+  //     const orders = []
+  //     querySnapshot.forEach((doc) => {
+  //       orders.push({
+  //         id: doc.id,
+  //         ...doc.data(),
+  //       })
+  //     })
+  //     setDoneOrders(orders)
+  //   })
+
+  //   IncompleteOrders.onSnapshot((querySnapshot) => {
+  //     const orders = []
+  //     querySnapshot.forEach((doc) => {
+  //       orders.push({
+  //         id: doc.id,
+  //         ...doc.data(),
+  //       })
+  //     })
+  //     setCurrOrders(orders)
+  //   })
+  // }
+
   //   function renderCurrOrders() {
   //     return currOrders.map((order) => (
   //       <OrderContainer key={order.id}>#{order.id.slice(0, 4)}</OrderContainer>
@@ -70,7 +134,7 @@ const OrdersUp = () => {
 
   function renderOrders(data) {
     return data.map((order) => (
-      <OrderContainer key={order.id}>#{order.id.slice(0, 4)}</OrderContainer>
+      <OrderContainer key={order.id}>ticket #{order.orderNum}</OrderContainer>
     ))
   }
 
