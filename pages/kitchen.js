@@ -9,6 +9,7 @@ import { PageTitle } from '../components/PageTitle'
 const Kitchen = () => {
   const [currOrders, setCurrOrders] = useState(null)
 
+  //Arrow function to attach a listener to my collection of orders
   const getOrders = (OrdersCollection) => {
     OrdersCollection.onSnapshot((querySnapshot) => {
       const items = []
