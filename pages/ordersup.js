@@ -9,24 +9,30 @@ const OrdersUp = () => {
   const [doneOrders, setDoneOrders] = useState([])
   const [currOrders, setCurrOrders] = useState([])
 
-  const CompletedOrders = firebaseInstance
-    .firestore()
-    .collection('orders')
-    .where('complete', '==', true)
+  try {
+    const CompletedOrders = firebaseInstance
+      .firestore()
+      .collection('orders')
+      .where('complete', '==', true)
 
-  const IncompleteOrders = firebaseInstance
-    .firestore()
-    .collection('orders')
-    .where('complete', '==', false)
+    const IncompleteOrders = firebaseInstance
+      .firestore()
+      .collection('orders')
+      .where('complete', '==', false)
 
-  useEffect(() => {
-    //console.log('curr orders:', currOrders, 'done orders:', doneOrders)
-    if (currOrders.length === 0) {
-      getOrders()
-    }
-  }, [currOrders])
+    getOrders(CompletedOrders, IncompleteOrders)
+  } catch (err) {
+    console.log(err, 'from ordersup pg')
+  }
 
-  function getOrders() {
+  // useEffect(() => {
+  //   console.log('curr orders:', currOrders, 'done orders:', doneOrders)
+  //   if (currOrders.length === 0) {
+  //     getOrders()
+  //   }
+  // }, [currOrders])
+
+  function getOrders(CompletedOrders, IncompleteOrders) {
     CompletedOrders.onSnapshot((querySnapshot) => {
       const orders = []
       querySnapshot.forEach((doc) => {

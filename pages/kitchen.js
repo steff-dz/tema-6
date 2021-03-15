@@ -9,13 +9,15 @@ import { PageTitle } from '../components/PageTitle'
 const Kitchen = () => {
   const [currOrders, setCurrOrders] = useState(null)
 
-  const OrdersCollection = firebaseInstance.firestore().collection('orders')
+  try {
+    const OrdersCollection = firebaseInstance.firestore().collection('orders')
 
-  useEffect(() => {
-    getOrders()
-  }, [currOrders])
+    getOrders(OrdersCollection)
+  } catch (err) {
+    console.log(err, 'err from kitchen pg')
+  }
 
-  function getOrders() {
+  function getOrders(OrdersCollection) {
     OrdersCollection.onSnapshot((querySnapshot) => {
       const items = []
       querySnapshot.forEach((doc) => {
@@ -79,6 +81,25 @@ const Kitchen = () => {
   )
 }
 
+// Kitchen.getInitiaProps = async () => {
+//   try {
+//     const OrdersCollection = await firebaseInstance.firestore().collection('orders')
+//     const res = OrdersCollection.onSnapshot((querySnapshot) => {
+//       let orders = []
+//       querySnapshot.forEach((doc) => {
+//         orders.push({
+//           id: doc.id,
+//           ...doc.data(),
+//         })
+//       })
+//     })
+
+//     return { orders }
+//   } catch (error) {
+//     return { error: error.message }
+//   }
+// }
+
 const HeaderBase = styled.header`
   h1 {
     color: #ffba6a;
@@ -117,7 +138,7 @@ const OrderArticle = styled.article`
     }
 
     ul {
-      list-style: inside;
+      list-style: none;
       font-size: 2.3rem;
     }
   }

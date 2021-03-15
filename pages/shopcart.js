@@ -14,11 +14,13 @@ const Shopcart = () => {
   const cart = useCart()
   const router = useRouter()
 
+  console.log(cart.quantity, 'from shopcart file', cart.total)
+
   function renderItems() {
     return cart.productLines.map((item) => (
       <ItemContainer key={item.id}>
         <p>
-          {item.title} - ${item.price}.00
+          {item.title} x {item.qty} <span>${item.price}.00</span>
         </p>
         <button
           onClick={() => {
@@ -106,6 +108,10 @@ const ItemContainer = styled.div`
     border-bottom: 1px solid grey;
     background-color: white;
     padding: 0 0.5rem;
+
+    span {
+      font-weight: 600;
+    }
   }
 
   button {

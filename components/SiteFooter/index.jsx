@@ -10,10 +10,10 @@ const SiteFooter = () => {
   const user = useAuth()
   const cart = useCart()
 
-  useEffect(() => {
-    //console.log(cart.productLines)
-    console.log(cart.quantity, 'from footer')
-  }, [cart.productLines])
+  // useEffect(() => {
+  //   console.log(cart.productLines)
+  //   console.log(cart.quantity, 'from footer')
+  // }, [cart.productLines])
 
   function renderLoginMessage() {
     return <PageTitle>Login or sign up!</PageTitle>

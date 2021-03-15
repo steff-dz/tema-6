@@ -25,6 +25,8 @@ export const Cart = ({ children }) => {
     const total = productLines.reduce((prev, curr) => {
       return prev + curr.price
     }, 0)
+
+    setTotal(total)
     const qty = productLines.reduce((prev, curr) => {
       return prev + curr.qty
     }, 0)

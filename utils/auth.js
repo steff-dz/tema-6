@@ -27,15 +27,15 @@ export function AuthProvider({ children }) {
     })
   })
 
-  useEffect(() => {
-    const handle = setInterval(async () => {
-      const user = firebaseInstance.auth().currentUser
-      console.log(user, 'testtest')
-      if (user) await user.getIdToken(true)
-    }, 10 * 60 * 1000)
+  // useEffect(() => {
+  //   const handle = setInterval(async () => {
+  //     const user = firebaseInstance.auth().currentUser
+  //     console.log(user, 'testtest')
+  //     if (user) await user.getIdToken(true)
+  //   }, 10 * 60 * 1000)
 
-    return clearInterval(handle)
-  })
+  //   return clearInterval(handle)
+  // })
 
   return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>
 }
