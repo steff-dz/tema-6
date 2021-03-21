@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import firebaseInstance from '../config/firebase'
 import styled from 'styled-components'
 import PageMenu from '../components/PageMenu'
-import { Wrapper } from '../components/Wrapper'
 import { PageTitle } from '../components/PageTitle'
 
 const OrdersUp = () => {
@@ -50,87 +49,6 @@ const OrdersUp = () => {
       console.log(err, 'from odersup file')
     }
   }, [])
-
-  //try {
-  // const CompletedOrders = firebaseInstance
-  //   .firestore()
-  //   .collection('orders')
-  //   .where('complete', '==', true)
-
-  // CompletedOrders.onSnapshot((querySnapshot) => {
-  //   const orders = []
-  //   querySnapshot.forEach((doc) => {
-  //     orders.push({
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     })
-  //   })
-  //   setDoneOrders(orders)
-  // })
-
-  // const IncompleteOrders = firebaseInstance
-  //   .firestore()
-  //   .collection('orders')
-  //   .where('complete', '==', false)
-
-  // IncompleteOrders.onSnapshot((querySnapshot) => {
-  //   const orders = []
-  //   querySnapshot.forEach((doc) => {
-  //     orders.push({
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     })
-  //   })
-  //   setCurrOrders(orders)
-  // })
-
-  //getOrders(CompletedOrders, IncompleteOrders)
-  //} catch (err) {
-  //console.log(err, 'from ordersup pg')
-  //}
-
-  // useEffect(() => {
-  //   console.log('curr orders:', currOrders, 'done orders:', doneOrders)
-  //   if (currOrders.length === 0) {
-  //     getOrders()
-  //   }
-  // }, [currOrders])
-
-  // function getOrders(CompletedOrders, IncompleteOrders) {
-  //   CompletedOrders.onSnapshot((querySnapshot) => {
-  //     const orders = []
-  //     querySnapshot.forEach((doc) => {
-  //       orders.push({
-  //         id: doc.id,
-  //         ...doc.data(),
-  //       })
-  //     })
-  //     setDoneOrders(orders)
-  //   })
-
-  //   IncompleteOrders.onSnapshot((querySnapshot) => {
-  //     const orders = []
-  //     querySnapshot.forEach((doc) => {
-  //       orders.push({
-  //         id: doc.id,
-  //         ...doc.data(),
-  //       })
-  //     })
-  //     setCurrOrders(orders)
-  //   })
-  // }
-
-  //   function renderCurrOrders() {
-  //     return currOrders.map((order) => (
-  //       <OrderContainer key={order.id}>#{order.id.slice(0, 4)}</OrderContainer>
-  //     ))
-  //   }
-
-  //   function renderDoneOrders() {
-  //     return doneOrders.map((order) => (
-  //       <OrderContainer key={order.id}>#{order.id.slice(0, 4)}</OrderContainer>
-  //     ))
-  //   }
 
   function renderOrders(data) {
     return data.map((order) => (

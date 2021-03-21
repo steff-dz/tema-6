@@ -16,9 +16,10 @@ const Shopcart = () => {
   const router = useRouter()
   const docColl = []
 
-  testOrders()
+  retrieveOrders()
 
-  async function testOrders() {
+  //function to get all the orders and capture how many there are to generate an order num for the customer.
+  async function retrieveOrders() {
     try {
       const orderCollection = await firebaseInstance.firestore().collection('orders')
       const res = await orderCollection.get()
@@ -31,6 +32,7 @@ const Shopcart = () => {
     }
   }
 
+  //func to render out items--------------------------------------------------------------------
   function renderItems() {
     return cart.productLines.map((item) => (
       <ItemContainer key={item.id}>
@@ -48,13 +50,13 @@ const Shopcart = () => {
     ))
   }
 
-  //function to handle deletes
+  //function to handle deletes-------------------------------------------
   function handleDelete(id) {
     console.log('from cart file', id, cart.productLines)
     cart.setProductLines(cart.productLines.filter((item) => item.id !== id))
   }
 
-  //function to push the order to firestore
+  //function to push the order to firestore-----------------------------
   function handleOrderPush() {
     const collection = firebaseInstance.firestore().collection('orders')
     collection
@@ -67,8 +69,7 @@ const Shopcart = () => {
         orderNum: counter + 1,
       })
       .then(() => {
-        console.log('pushed to firebase wooo')
-        //router.push('/ordersup')
+        router.push('/ordersup')
       })
       .catch((error) => {
         console.log(error)

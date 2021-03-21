@@ -29,7 +29,6 @@ const Login = () => {
     try {
       await firebaseInstance.auth().signInWithEmailAndPassword(loginEmail, loginPassword)
 
-      console.log('you are signed in!')
       //Put a re-route back to home page or menu here!
     } catch (error) {
       console.log(error, 'you failed sucka!')

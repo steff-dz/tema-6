@@ -1,6 +1,7 @@
 //import React from 'react'
 import firebaseInstance from '../../config/firebase'
 
+//function to get menu data from firebase-----------------
 async function getMenuData() {
   let menuArray = []
 

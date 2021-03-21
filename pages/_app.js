@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-//import firebaseInstance from '../config/firebase'
+import React from 'react'
+
 import { AuthProvider } from '../utils/auth'
 import { Cart } from '../utils/CartContext'
 

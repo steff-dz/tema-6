@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
@@ -6,12 +6,10 @@ import firebaseInstance from '../../config/firebase'
 import { useAuth } from '../../utils/auth'
 
 const SiteMenu = () => {
+  //bringing in the hook for authentication--------------
   const user = useAuth()
 
-  useEffect(() => {
-    console.log(user)
-  })
-
+  //function for dealing with the user signing out --------------
   function handleSignOut() {
     firebaseInstance
       .auth()

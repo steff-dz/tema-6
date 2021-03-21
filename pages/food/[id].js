@@ -9,19 +9,17 @@ import SiteFooter from '../../components/SiteFooter'
 import { MinusCircle } from 'phosphor-react'
 import { PlusCircle } from 'phosphor-react'
 import { useCart } from '../../utils/CartContext'
-import { useAuth } from '../../utils/auth'
 
 function FoodPage({ item, error }) {
   const [counter, setCounter] = useState(1)
 
   const cart = useCart()
-  const user = useAuth()
 
   useEffect(() => {
     console.log(cart.productLines)
   }, [cart.productLines])
 
-  //Adding product to the cart
+  //Adding product to the cart----------------------
   function addToCart() {
     cart.addProductLine({
       id: item.id,

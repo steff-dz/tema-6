@@ -4,12 +4,11 @@ import styled from 'styled-components'
 import PageMenu from '../components/PageMenu'
 import { Wrapper } from '../components/Wrapper'
 import { PageTitle } from '../components/PageTitle'
-//import { getOrders } from '../components/GetOrders'
 
 const Kitchen = () => {
   const [currOrders, setCurrOrders] = useState(null)
 
-  //Arrow function to attach a listener to my collection of orders
+  //Arrow function to attach a listener to my collection of orders----------------
   const getOrders = (OrdersCollection) => {
     OrdersCollection.onSnapshot((querySnapshot) => {
       const items = []
@@ -23,23 +22,31 @@ const Kitchen = () => {
     })
   }
 
+  //Use effect to run to function with the listener----------------------------------
   useEffect(() => {
     try {
       const OrdersCollection = firebaseInstance.firestore().collection('orders')
-
       getOrders(OrdersCollection)
     } catch (err) {
       console.log(err, 'err from kitchen pg')
     }
   }, [])
 
+  //function to filter for orders that are incomplete, then returning said orders-----------
   function renderOrders() {
     let incompleteOrders = [...currOrders.filter((order) => order.complete === false)]
+
     return incompleteOrders.map((order) => (
       <OrderArticle key={order.id}>
         <div>
           <h2>Ticket #{order.orderNum}</h2>
-          <ul>{renderItems(order.items)}</ul>
+          <ul>
+            {order.items.map((el) => (
+              <li key={el.id}>
+                {el.title} x {el.qty}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <button onClick={() => handleComplete(order)}>Complete</button>
@@ -47,16 +54,17 @@ const Kitchen = () => {
     ))
   }
 
-  function renderItems(data) {
-    let foodItems = []
-    foodItems.push(...data.filter((el) => el.type !== 'drink'))
-    return foodItems.map((el) => (
-      <li key={el.id}>
-        {el.title} x {el.qty}
-      </li>
-    ))
-  }
+  // function renderItems(data) {
+  //   let foodItems = []
+  //   foodItems.push(...data.filter((el) => el.type !== 'drink'))
+  //   return foodItems.map((el) => (
+  //     <li key={el.id}>
+  //       {el.title} x {el.qty}
+  //     </li>
+  //   ))
+  // }
 
+  //function for handling orders that are completed--------------------------
   function handleComplete(data) {
     console.log(data.id)
     const OrdersCollection = firebaseInstance.firestore().collection('orders')
@@ -84,25 +92,6 @@ const Kitchen = () => {
     </>
   )
 }
-
-// Kitchen.getInitiaProps = async () => {
-//   try {
-//     const OrdersCollection = await firebaseInstance.firestore().collection('orders')
-//     const res = OrdersCollection.onSnapshot((querySnapshot) => {
-//       let orders = []
-//       querySnapshot.forEach((doc) => {
-//         orders.push({
-//           id: doc.id,
-//           ...doc.data(),
-//         })
-//       })
-//     })
-
-//     return { orders }
-//   } catch (error) {
-//     return { error: error.message }
-//   }
-// }
 
 const HeaderBase = styled.header`
   h1 {

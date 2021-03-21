@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { PageTitle } from '../PageTitle'
 import { useAuth } from '../../utils/auth'
@@ -7,18 +7,15 @@ import { ShoppingCartSimple } from 'phosphor-react'
 import Link from 'next/link'
 
 const SiteFooter = () => {
+  //user and cart hooks ----------------------
   const user = useAuth()
   const cart = useCart()
-
-  // useEffect(() => {
-  //   console.log(cart.productLines)
-  //   console.log(cart.quantity, 'from footer')
-  // }, [cart.productLines])
 
   function renderLoginMessage() {
     return <PageTitle>Login or sign up!</PageTitle>
   }
 
+  //function to show the shopping cart---------
   function renderShoppingCart() {
     return (
       <article>

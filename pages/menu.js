@@ -14,13 +14,13 @@ const Menu = ({}) => {
   const router = useRouter()
   const [menuData, setMenuData] = useState([])
 
-  //states for the food data coming from firestore
+  //states for the food data coming from firestore----------
   const [burgers, setBurgers] = useState([])
   const [drinks, setDrinks] = useState([])
   const [sides, setSides] = useState([])
   const [displayFood, setDisplayFood] = useState([])
 
-  //function for getting the food data
+  //function for getting the food data----------------------
   const fetchMenuData = async () => {
     const result = await getMenuData()
     setMenuData(result)
@@ -45,14 +45,14 @@ const Menu = ({}) => {
     }
   }, [menuData])
 
-  //Rending out the food in a desired order
+  //Rending out the food in a desired order-------------------------------------
   useEffect(() => {
     if (burgers.length !== 0) {
       setDisplayFood([...burgers, ...sides, ...drinks])
     }
   }, [burgers])
 
-  //Page skeleton below
+  //Page skeleton below-----------------------------------------------------------
   function renderSkeleton() {
     return (
       <React.Fragment>
@@ -63,7 +63,7 @@ const Menu = ({}) => {
     )
   }
 
-  //Actual page render below:
+  //Actual page render below:--------------------------------------------
   function renderPage() {
     return displayFood.map((item) => (
       <FoodArticle key={item.id}>
@@ -83,7 +83,7 @@ const Menu = ({}) => {
     ))
   }
 
-  //Function to render out the burger toppings in a list
+  //Function to render out the burger toppings in a list----------------------------------
   function renderToppings(data) {
     if (data === undefined) {
       return <li>Something will come here later.</li>
@@ -92,7 +92,7 @@ const Menu = ({}) => {
     }
   }
 
-  //Filter handler to switch between food types.
+  //Filter handler to switch between food types.-----------------------------------------------
   function filterHandler(e) {
     if (e.target.innerHTML === 'burgers') {
       setDisplayFood([])

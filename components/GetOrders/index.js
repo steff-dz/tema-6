@@ -1,24 +1,23 @@
-import firebaseInstance from '../../config/firebase'
+// import firebaseInstance from '../../config/firebase'
 
-export function getOrders(el) {
-  let items = []
+// export function getOrders(el) {
+//   let items = []
 
-  try {
-    el.onSnapshot((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        items.push({
-          id: doc.id,
-          ...doc.data(),
-        })
-      })
-    })
+//   try {
+//     el.onSnapshot((querySnapshot) => {
+//       querySnapshot.forEach((doc) => {
+//         items.push({
+//           id: doc.id,
+//           ...doc.data(),
+//         })
+//       })
+//     })
 
-    console.log(items)
-    return items
-  } catch (error) {
-    console.log(error)
-  }
-}
+//     return items
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
 // useEffect(() => {
 //     console.log('stuff here')
